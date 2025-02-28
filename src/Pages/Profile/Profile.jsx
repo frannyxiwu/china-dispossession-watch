@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Island from './Components/Island';
 import data from '../../mapData';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import LearnMore from './Components/LearnMore';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,16 +13,57 @@ const Profile = () => {
   const [imageId, setImageId] = useState(0);
   const [showArrow, setShowArrow] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
+  const [currentFootnoteId, setCurrentFootnoteId] = useState(null);
   const navigate = useNavigate();
 
+  // Refs for paragraphs and footnotes
+  const paragraphRefs = useRef([]);
+  const footnoteRefs = useRef({});
+
   useEffect(() => {
-    let foundProfile = data.find(item => item.id === id);
+    const foundProfile = data.find(item => item.id === id);
     if (foundProfile) {
       setProfile(foundProfile);
     } else {
-      navigate(`/404`);
+      navigate('/404');
     }
   }, [id, navigate]);
+
+  // Set up IntersectionObserver for paragraphs with footnotes in MiddlePanel
+  useEffect(() => {
+    if (!paragraphRefs.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const footId = entry.target.getAttribute('data-footnote-id');
+            if (footId) {
+              setCurrentFootnoteId(footId);
+            }
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    paragraphRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [profile, currentLang]);
+
+  // When currentFootnoteId changes, scroll the matching footnote in RightPanel into view
+  useEffect(() => {
+    if (currentFootnoteId && footnoteRefs.current[currentFootnoteId]) {
+      footnoteRefs.current[currentFootnoteId].scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  }, [currentFootnoteId]);
 
   const handleNegativeClick = () => {
     if (imageId - 1 < 0) return;
@@ -35,87 +76,100 @@ const Profile = () => {
     setImageId(imageId + 1);
   };
 
+  // When clicking a footnote in RightPanel, scroll the corresponding paragraph in MiddlePanel into view
+  const scrollToParagraph = (footId) => {
+    const target = paragraphRefs.current.find(
+      el => el && el.getAttribute('data-footnote-id') === footId
+    );
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   if (!profile) return null;
 
-  // Separate English and Chinese paragraphs
+  // Filter paragraphs based on language
   const englishParagraphs = profile.description.filter(item => item.type === 'en');
   const chineseParagraphs = profile.description.filter(item => item.type === 'ch');
+
+  // Component for clickable footnote link in main text
+  const FootnoteLink = ({ footnoteId }) => {
+    const handleClick = () => {
+      if (footnoteRefs.current[footnoteId]) {
+        footnoteRefs.current[footnoteId].scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      }
+    };
+    return <Superscript onClick={handleClick}>[{footnoteId}]</Superscript>;
+  };
+
+  // Function to replace footnote markers in text with clickable links
+  const renderTextWithFootnotes = (text) => {
+    const parts = text.split(/(\[\d+\])/g);
+    return parts.map((part, index) => {
+      const match = part.match(/^\[(\d+)\]$/);
+      if (match) {
+        const id = match[1];
+        return <FootnoteLink key={index} footnoteId={id} />;
+      }
+      return part;
+    });
+  };
 
   return (
     <Wrapper>
       <BodyWrapper>
         {/* Panel 1: Left Panel */}
         <LeftPanel>
-          <Island data={profile} />
+          <Island data={profile} currentLang={currentLang} />
+          {/* Optional: Additional content (e.g., carousel) */}
         </LeftPanel>
 
         {/* Panel 2: Middle Panel */}
         <MiddlePanel>
           <Body>
             <ToggleContainer>
-              <ToggleButton active={currentLang === 'en'} onClick={() => setCurrentLang('en')}>
+              <ToggleButton
+                active={currentLang === 'en'}
+                onClick={() => setCurrentLang('en')}
+              >
                 English
               </ToggleButton>
-              <ToggleButton active={currentLang === 'ch'} onClick={() => setCurrentLang('ch')}>
+              <ToggleButton
+                active={currentLang === 'ch'}
+                onClick={() => setCurrentLang('ch')}
+              >
                 中文
               </ToggleButton>
             </ToggleContainer>
 
+            {/* Render paragraphs with processed footnote markers */}
             {currentLang === 'en'
               ? englishParagraphs.map((item, index) => (
-                  <Paragraph key={index}>
-                    <EnglishText>{item.default}</EnglishText>
+                  <Paragraph
+                    key={index}
+                    ref={el => paragraphRefs.current[index] = el}
+                    data-footnote-id={item.footnoteId ? item.footnoteId : null}
+                  >
+                    <EnglishText>{renderTextWithFootnotes(item.default)}</EnglishText>
                   </Paragraph>
                 ))
               : chineseParagraphs.map((item, index) => (
-                  <Paragraph key={index}>
-                    <ChineseText>{item.default}</ChineseText>
+                  <Paragraph
+                    key={index}
+                    ref={el => paragraphRefs.current[index] = el}
+                    data-footnote-id={item.footnoteId ? item.footnoteId : null}
+                  >
+                    <ChineseText>{renderTextWithFootnotes(item.default)}</ChineseText>
                   </Paragraph>
                 ))
             }
 
-            <Carousel
-              onMouseEnter={() => setShowArrow(true)}
-              onMouseLeave={() => setShowArrow(false)}
-            >
-              <CarouselButton
-                limit={profile.images.length - 1 === imageId}
-                pos="right"
-                onClick={handlePositiveClick}
-              >
-                <ArrowForward />
-              </CarouselButton>
-              <CarouselButton
-                limit={imageId === 0}
-                pos="left"
-                onClick={handleNegativeClick}
-              >
-                <ArrowBack />
-              </CarouselButton>
-              {profile.images && (
-                <a href={profile.images[imageId].link}>
-                  <img
-                    src={profile.images[imageId].link}
-                    style={{ height: '500px', margin: 'auto' }}
-                    alt=""
-                  />
-                </a>
-              )}
-            </Carousel>
-            <ImageCaption>{profile.images[imageId].caption}</ImageCaption>
-            <ImageCaptionChinese>
-              {profile.images[imageId].chCaption}
-            </ImageCaptionChinese>
-            <Counter>
-              {imageId + 1}/{profile.images.length}
-            </Counter>
-
             {profile?.resources && (
               <div>
-                <LearnMoreTitle>Learn More</LearnMoreTitle>
-                <LearnMoreSubtitle>
-                  Check out more resources submitted by our community.
-                </LearnMoreSubtitle>
+                <LearnMoreTitle>Materials 材料</LearnMoreTitle>
                 {profile.resources.map((resource, index) => (
                   <LearnMore key={index} resource={resource} />
                 ))}
@@ -124,12 +178,20 @@ const Profile = () => {
           </Body>
         </MiddlePanel>
 
-        {/* Panel 3: New Right Panel */}
+        {/* Panel 3: Right Panel for Footnotes */}
         <RightPanel>
-          <Placeholder>
-            {/* Replace this with your desired content */}
-            Additional content goes here.
-          </Placeholder>
+          <FootnotesContainer>
+            {profile.footnotes &&
+              profile.footnotes.map(footnote => (
+                <Footnote
+                  key={footnote.id}
+                  ref={el => (footnoteRefs.current[footnote.id] = el)}
+                  onClick={() => scrollToParagraph(footnote.id)}
+                >
+                  <Superscript>[{footnote.id}]</Superscript> {currentLang === 'en' ? footnote.en : footnote.ch}
+                </Footnote>
+              ))}
+          </FootnotesContainer>
         </RightPanel>
       </BodyWrapper>
     </Wrapper>
@@ -158,15 +220,24 @@ const BodyWrapper = styled.div`
 
 /* Panel Definitions */
 const LeftPanel = styled.div`
-  flex: 1;
+  flex: 1.25;
+  position: sticky;
+  top: 0;
+  height: 100vh; 
+  overflow-y: auto;
 `;
 
 const MiddlePanel = styled.div`
   flex: 2;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid rgba(66, 63, 103, 0.25);
 `;
 
 const RightPanel = styled.div`
-  flex: 1;
+  flex: 0.75;
+  height: 100vh;
+  overflow-y: auto;
 `;
 
 /* Body of Middle Panel */
@@ -229,19 +300,9 @@ const ChineseText = styled.div`
 `;
 
 /* Learn More Section */
-const LearnMoreSubtitle = styled.div`
-  font-family: 'Quattrocento';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 26px;
-  margin-bottom: 16px;
-`;
-
 const LearnMoreTitle = styled.div`
-  margin-bottom: 16px;
-  font-family: 'Rowdies';
-  font-style: normal;
+  margin-bottom: 8px;
+  font-family: "Rowdies", cursive;
   font-weight: 700;
   font-size: 18px;
   line-height: 26px;
@@ -249,70 +310,27 @@ const LearnMoreTitle = styled.div`
   text-transform: uppercase;
 `;
 
-const Border = styled.div`
-  border-top: 1px solid rgba(66, 63, 103, 0.25);
-  margin: 32px 0;
-  width: 100%;
+/* Footnotes in Right Panel */
+const FootnotesContainer = styled.div`
+  padding: 16px;
+  max-height: 100%;
+  overflow-y: auto;
 `;
 
-const ImageCaption = styled.div`
+const Footnote = styled.div`
+  margin-bottom: 12px;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
   font-family: 'Lora', serif;
-  font-style: normal;
-  font-weight: 400;
   font-size: 14px;
-  line-height: 18px;
-  color: #1e1e1e;
+  color: #333;
+  cursor: pointer;
 `;
 
-const ImageCaptionChinese = styled(ImageCaption)`
-  font-family: 'Noto Serif TC';
-`;
-
-const Counter = styled.div`
-  font-family: 'Quattrocento';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  margin-top: 16px;
-  color: #1e1e1e;
-`;
-
-/* Carousel */
-const CarouselButton = styled.button`
-  position: absolute;
-  top: calc(50% - 8px);
-  left: ${(props) => props.pos === 'left' && '8px'};
-  right: ${(props) => props.pos === 'right' && '8px'};
-  opacity: ${(props) => (props.limit ? 0.5 : 1)};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #423f67;
-  color: white;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  border: none;
-  cursor: ${(props) => (!props.limit ? 'pointer' : 'default')};
-`;
-
-const Carousel = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 800px) {
-    height: auto;
-  }
-`;
-
-/* Placeholder for Panel 3 */
-const Placeholder = styled.div`
-  padding: 32px;
-  text-align: center;
-  font-family: 'Lora', serif;
-  font-size: 18px;
-  color: #423f67;
-  border-left: 1px solid rgba(66, 63, 103, 0.25);
+/* Superscript for footnote links */
+const Superscript = styled.span`
+  vertical-align: super;
+  font-size: 0.75em;
+  color: #0000FF; 
+  cursor: pointer;
 `;

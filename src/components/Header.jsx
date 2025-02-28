@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <Wrapper>
             <NavLink to={'/'}>
-                <LogoImage src={logo} alt={'history trail logo'}/>
+                <EngTitle>China Dispossession Watch <b>中国征地拆迁观察</b></EngTitle>
             </NavLink>
             <NavigationLinkContainer>
                 <NavLink 
@@ -170,13 +170,14 @@ const LogoImage = styled.img`
 
 const Wrapper = styled.div`
     width: 100%;
-    height: 88px;
+    height: 48px;
     display: flex;
+    position: sticky;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 32px;
+    padding: 12px 12px;
     box-sizing: border-box;
-    background-color: #FBF6E9;
+    background-color: #ffffff;
     position: relative;
     z-index: 101;
 

@@ -1,192 +1,174 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { ArrowForward, ArrowBack } from '@mui/icons-material';
+
 import Acorn from '../../../assets/acorn.png';
 import AudioPlayer from './AudioPlayer';
 import StreetViewComponent from './StreetViewComponent';
 
-const Island = ({data}) => {
-    const [isTooltipShowing, setIsTooltipShowing] = useState(false);
-    const [tooltipTimeout, setTooltipTimeout] = useState(null);
+const Island = ({ data, currentLang }) => {
+  const [isTooltipShowing, setIsTooltipShowing] = useState(false);
+  const [tooltipTimeout, setTooltipTimeout] = useState(null);
+  const [imageId, setImageId] = useState(0);
 
-    const toggleTooltip = (ev) => {
-        ev.preventDefault();
-        setIsTooltipShowing(!isTooltipShowing);
-        clearTimeout(tooltipTimeout); // Clear any existing timeout
-    }
+  const handleNegativeClick = () => {
+    if (imageId - 1 < 0) return;
+    setImageId(imageId - 1);
+  };
 
-    const destroyTooltip = () => {
+  const handlePositiveClick = () => {
+    if (imageId + 1 === data.images.length) return;
+    setImageId(imageId + 1);
+  };
+
+  const toggleTooltip = (ev) => {
+    ev.preventDefault();
+    setIsTooltipShowing(!isTooltipShowing);
+    clearTimeout(tooltipTimeout);
+  };
+
+  const destroyTooltip = () => {
+    setIsTooltipShowing(false);
+    clearTimeout(tooltipTimeout);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', destroyTooltip);
+    return () => {
+      window.removeEventListener('scroll', destroyTooltip);
+      clearTimeout(tooltipTimeout);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isTooltipShowing) {
+      const timeoutId = setTimeout(() => {
         setIsTooltipShowing(false);
-        clearTimeout(tooltipTimeout); // Clear any existing timeout
+      }, 1500);
+      setTooltipTimeout(timeoutId);
     }
+  }, [isTooltipShowing]);
 
-    useEffect(() => {
-        // Add scroll event listener
-        window.addEventListener('scroll', destroyTooltip);
-    
-        // Remove scroll event listener on component unmount
-        return () => {
-          window.removeEventListener('scroll', destroyTooltip);
-          clearTimeout(tooltipTimeout); // Clear any existing timeout
-        };
-    }, []);
+  return (
+    <Wrapper>
+      {/* Example title block
+      <Title>{data.name}</Title>
+      <SubTitle>“{data.hint}”</SubTitle>
+      <Address>{data.address} {data.chineseAddress}</Address>
+      */}
 
-    useEffect(() => {
-        if (isTooltipShowing) {
-            const timeoutId = setTimeout(() => {
-                setIsTooltipShowing(false);
-            }, 1500);
-            setTooltipTimeout(timeoutId); // Store the timeout ID
-        }
-    }, [isTooltipShowing]);
+      {/* Street View */}
+      <StreetViewComponent
+        location={data.location}
+        heading={data.heading}
+      />
 
-    return (
-        <Wrapper>
-            <Title>
-                {data.name}
-                {data.sign && 
-                <TooltipWrapper>
-                    <button
-                        onClick={ev => toggleTooltip(ev)}
-                        onMouseEnter={ev => toggleTooltip(ev)}
-                    >
-                        <img 
-                            style={{marginLeft: '8px'}} 
-                            src={Acorn} 
-                            alt='acorn that indicates a physical sign'
-                        />
-                    </button>
-                    {isTooltipShowing &&
-                        <Tooltip>Visit the sign in person!</Tooltip>
-                    }
-                </TooltipWrapper>
-                }
-            </Title>
-            <SubTitle>“{data.hint}”</SubTitle>
-            <Address>{data.address} {data.chineseAddress}</Address>
-            <StreetViewComponent location={data.location} heading={data.heading}/>
-            <Border/>
-            {data.audio && data.audio.map((file) => {
-                return <AudioPlayer key={file.name} file={file}/>
-            })}
-            <CommentButton>
-                <a href={'https://forms.gle/9NPYBbUc8ErcP7tn6'}>
-                    Submit a Story
-                </a>
-            </CommentButton>
-        </Wrapper>
-    )
-}
+      <Border />
 
-export default Island
+      {data.audio && data.audio.map((file) => (
+        <AudioPlayer key={file.name} file={file} />
+      ))}
 
-const Tooltip = styled.div`
-    position: absolute;
-    font-family: 'Quattrocento';
-    font-size: 16px;
-    white-space: nowrap;
-    color: white;
-    text-transform: none;
-    background-color: #423F67;
-    border-radius: 8px;
-    padding: 12px;
-    height: 36px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 8px;
-    left: -75px;
-`
+      {/* Carousel */}
+      {data.images && data.images.length > 0 && (
+        <>
+          <Carousel>
+            <CarouselButton
+              limit={imageId === data.images.length - 1}
+              pos="right"
+              onClick={handlePositiveClick}
+            >
+              <ArrowForward />
+            </CarouselButton>
+            <CarouselButton
+              limit={imageId === 0}
+              pos="left"
+              onClick={handleNegativeClick}
+            >
+              <ArrowBack />
+            </CarouselButton>
+            <a href={data.images[imageId].link}>
+              <img
+                src={data.images[imageId].link}
+                style={{ height: '300px', margin: 'auto' }}
+                alt=""
+              />
+            </a>
+          </Carousel>
+          <ImageCaption>
+            {currentLang === 'en'
+              ? data.images[imageId].caption
+              : data.images[imageId].chCaption}
+          </ImageCaption>
+          <Counter>
+            {imageId + 1}/{data.images.length}
+          </Counter>
+        </>
+      )}
+    </Wrapper>
+  );
+};
 
-const TooltipWrapper = styled.div`
-    position: relative;
+export default Island;
 
-    button {
-        background: none;
-        border: none;
-        margin: 0px;
-        padding: 0px;
-        cursor: pointer;
-    }
-`
-
-const Border = styled.div`
-    width: 100%;
-    border-bottom: 1px solid rgba(66, 63, 103, 0.25);
-    margin: 8px 0px;
-`
-
-const CommentButton = styled.button`
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
-    gap: 8px;
-
-    max-width: 221px;
-    height: 40px;
-    white-space: nowrap;
-
-    background: #FFD44A;
-    border: none;
-    border-radius: 4px;
-    font-family: 'Quattrocento';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 26px;
-    cursor: pointer;
-
-    a {
-        color: #423F67;
-        text-decoration: none;
-        :visited {
-            color: #423F67;
-        }
-    }
-`
-
-const Address = styled.div`
-    font-family: 'Quattrocento';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 26px;
-
-    color: #423F67;
-`
-
-const SubTitle = styled.div`
-    font-family: 'Rowdies';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 24px;
-    line-height: 30px;
-
-    color: #423F67;
-`
-
-const Title = styled.div`
-    font-family: 'Rowdies';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 38px;
-
-    text-transform: uppercase;
-    color: #423F67;
-    display: flex;
-    gap: 8px;
-`
+/*────────────────────────────────────────────────────────────────────
+  STYLED COMPONENTS
+────────────────────────────────────────────────────────────────────*/
 
 const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 32px 48px;
-    max-width: 539px;
-    box-sizing: border-box;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  /* ↓ Make the padding smaller than before ↓ */
+  padding: 16px 24px;
+
+  max-width: 539px;
+  box-sizing: border-box;
+`;
+
+const Border = styled.div`
+  width: 100%;
+  border-bottom: 1px solid rgba(66, 63, 103, 0.25);
+  margin: 8px 0px;
+`;
+
+const Carousel = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CarouselButton = styled.button`
+  position: absolute;
+  top: calc(50% - 8px);
+  left: ${(props) => props.pos === 'left' && '8px'};
+  right: ${(props) => props.pos === 'right' && '8px'};
+  opacity: ${(props) => (props.limit ? 0.5 : 1)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #423f67;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: ${(props) => (!props.limit ? 'pointer' : 'default')};
+`;
+
+const ImageCaption = styled.div`
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+`;
+
+const Counter = styled.div`
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  line-height: 0px;
+  margin-top: 0px;
+  color: #000000;
+`;

@@ -42,11 +42,11 @@ const LearnMoreArticle = styled.div`
 const LearnMoreWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    font-family: 'Quattrocento';
+    font-family: 'Lora', serif;
     font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 26px;
+    font-weight: 550;
+    font-size: 16px;
+    line-height: 22px;
 
     color: #423F67;
     a {

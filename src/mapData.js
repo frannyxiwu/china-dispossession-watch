@@ -2,23 +2,23 @@
 import { parseParagraphs } from './utils/parseParagraphs';
 
 const englishText = `
-My name is Yu Xiulan. I owned three properties in Binhu District, Wuxi City, Jiangsu Province: my original home at No. 45 in Yong'an Village of Huazhuang Subdistrict, a newly constructed villa (temporarily numbered 45-1), and a productive pig farm measuring 343.7 square meters. I also held four mu (2,667 square meters) of contracted farmland, with half explicitly guaranteed under a "thirty-year unchanged"  contract. To this day, I still possess all the relevant contracts, property deeds, and keys—none of which I ever surrendered to the demolition authorities.
+My name is Yu Xiulan. I owned three properties in Binhu District, Wuxi City, Jiangsu Province: my original home at No. 45 in Yong'an Village of Huazhuang Subdistrict, a newly constructed villa (temporarily numbered 45-1), and a productive pig farm measuring 343.7 square meters. I also held four mu (2,667 square meters) of contracted farmland, with half explicitly guaranteed under a "thirty-year unchanged" [1] contract. To this day, I still possess all the relevant contracts, property deeds, and keys—none of which I ever surrendered to the demolition authorities.
 
 Each of my three properties occupied distinct locations: the new villa was built on Datong Road, the old house was in old Huazhuang Village, and the pig farm was situated in the silkworm fields on my farmland. The authorities forcibly seized these properties in three separate instances, yet when it came time to determine the resettlement compensation, they tried to lump them together as a single case. The new villa, spanning over 300 square meters and furnished with top quality materials, was built with the intention of preparing for my son’s marriage. We had invested all our savings and even borrowed tens of thousands of yuan to construct it. My son suffered from a devastating bout of nephritis when he was 15 and only began to recover at 20. Due to his illness, he could not find a wife. “Mom, Dad,” he once said, “we make our living raising, slaughtering, and selling pigs. The savings we deplete for the new house will build back, but a nice house will help me find a wife.” The village commune, taking pity on us after my son’s illness, granted us permission to establish a pig farm on my contracted land, allowing my son and me to raise pigs together. Over eight years, we built into a thriving operation with 178 pigs by the time of the forced demolition. Raising so many pigs was bitter work. My son managed the farm during daylight hours while I gathered feed scraps. We worked tirelessly, and my husband also worked himself to exhaustion at his factory job. Despite all our efforts and sacrifices, we never got to spend even a single night in our new villa before it was robbed from us.
 
-The first blow came in October 2002, immediately after we completed the villa. Officials from both our village and subdistrict arrived with demolition notices, but without any legitimate documents or proper procedures. When my husband and I refused to comply, they brought in two local “qingtou”  (thugs) and an appraisal company. The so-called appraisal was less than perfunctory—they barely glanced around the property before making the assessment. By 2003, their tactics had escalated. The demolition team, working in concert with village officials and the thugs cosplaying local “enforcers”, began a systematic campaign to force residents into submission.
+The first blow came in October 2002, immediately after we completed the villa. Officials from both our village and subdistrict arrived with demolition notices, but without any legitimate documents or proper procedures. When my husband and I refused to comply, they brought in two local “qingtou” [2] (thugs) and an appraisal company. The so-called appraisal was less than perfunctory—they barely glanced around the property before making the assessment. By 2003, their tactics had escalated. The demolition team, working in concert with village officials and the thugs cosplaying local “enforcers”, began a systematic campaign to force residents into submission.
 
 My husband wasn’t born in the countryside. He had taken over his father’s factory job at 18 to feed his family after his father passed away. As a result, he didn’t understand the complex rural land policies and ownership structures. On Sunday, March 29, 2003, he had a day off from work, the village officials summoned him shortly after lunch at 1 p.m. My son had tried to stop him from going, fearing something bad would happen, but my husband went anyway. 
 
-At 9 p.m. that evening, after finishing my work at the pig farm, I grew increasingly uneasy and asked my son-in-law to drive me to the village office. I feared they might coerce my husband into signing something. When we arrived, the village party secretary , the head of the village, and the agricultural officer were guarding the entrance and wouldn’t let me in. I had no choice but to return home, leaving my husband in their custody. When he finally returned at midnight, he was broken. “I had no choice. I had to sign.” Overcome with shame and despair, he sobbed continuously and repeatedly slapped himself in the face.
+At 9 p.m. that evening, after finishing my work at the pig farm, I grew increasingly uneasy and asked my son-in-law to drive me to the village office. I feared they might coerce my husband into signing something. When we arrived, the village party secretary [3], the head of the village, and the agricultural officer were guarding the entrance and wouldn’t let me in. I had no choice but to return home, leaving my husband in their custody. When he finally returned at midnight, he was broken. “I had no choice. I had to sign.” Overcome with shame and despair, he sobbed continuously and repeatedly slapped himself in the face.
 
-I asked him, “How did this happen?” He described how the village accountant—a tall and physically imposing man—had bodily lifted him onto the signing table. The party secretary, village head, and the accountant surrounded him while someone from the demolition office repeatedly slammed the table, shouting, “If you don’t sign today, you won’t even get a penny tomorrow!” My husband eventually signed an agreement after enduring 11 hours of physical and psychological intimidation including pushing, shoving, and yelling. Notably, the agreement was blank , and my husband wasn’t even the legal property owner.
+I asked him, “How did this happen?” He described how the village accountant—a tall and physically imposing man—had bodily lifted him onto the signing table. The party secretary, village head, and the accountant surrounded him while someone from the demolition office repeatedly slammed the table, shouting, “If you don’t sign today, you won’t even get a penny tomorrow!” My husband eventually signed an agreement after enduring 11 hours of physical and psychological intimidation including pushing, shoving, and yelling. Notably, the agreement was blank [4], and my husband wasn’t even the legal property owner.
 
 Later, a demolition officer told my son, “Your house is the best-built one in the area, but they’re offering you practically nothing. Don't you have any connections—someone who understands the inner workings of resettlement—to help you get fair compensation?” But we had no such connections, no insider knowledge. When my son finally learned the details of the compensation, the numbers were staggering in their inadequacy: our new villa, over 300 square meters of quality construction, was valued at a mere ¥166,000 ($22,952); the 343.7-square-meter pig farm that sustained our family was valued at just over ¥30,000 ($4,148); and our old house, approximately 300 square meters, built with earnings from eight years of my tofu-making business, was only compensated at ¥89,900 ($12,430). I worked tirelessly day-and-night to renovate this house, and it had been the site of my eldest daughter’s wedding after its completion and beam-raising. 
 
 The revelation of these numbers broke something in my son. When he learned how they had devalued everything we’ve built, he lost all control, running wildly through the fields in a manic state. He eventually ran away from home, disappearing for several days, and even made two desperate trips to Nanjing that we only learned about later. 
 
-Meanwhile, I was left alone to tend to the pigs and to manage our crumbling household. On April 2, 2003, while I was out running errands, they forcibly demolished our old house and pillaged our home. They pried up floorboards, scattered our pots, pans, and cooking utensils across the yard, and stole anything of value from the house. My husband was away petitioning  the authorities, my son was still missing, and my two daughters were out searching for their brother at train stations. Left alone without any help, I went to the demolition office to demand an explanation. I asked, “Why did you destroy my house when I didn’t sign anything? I still hold the deed and keys!” They responded with cold indifference: “Your husband signed an agreement. That’s enough.”
+Meanwhile, I was left alone to tend to the pigs and to manage our crumbling household. On April 2, 2003, while I was out running errands, they forcibly demolished our old house and pillaged our home. They pried up floorboards, scattered our pots, pans, and cooking utensils across the yard, and stole anything of value from the house. My husband was away petitioning [5] the authorities, my son was still missing, and my two daughters were out searching for their brother at train stations. Left alone without any help, I went to the demolition office to demand an explanation. I asked, “Why did you destroy my house when I didn’t sign anything? I still hold the deed and keys!” They responded with cold indifference: “Your husband signed an agreement. That’s enough.”
 
 When my husband returned home to the ruins of our house, he was so distraught that he attempted to take his own life. Thankfully, my daughters finally located my son and convinced him to return home to assuage his father. Though finally reunited, with nowhere else to go, our family of three was forced to move into our pig pen.
 
@@ -28,7 +28,7 @@ Not long after destroying our old house, the demolition office staff arrived at 
 
 Between April and May, temperatures soared to 38 to 40 °C (100-104 °F). My son and I made six desperate trips to the Wuxi Agricultural Company’s appraisal office to challenge our property valuations. I asked, “Why was our newly built villa appraised at the same rate as an old house and compensated so poorly?” The appraisal manager admitted, “The appraisal originally classified it as a villa, but the village thugs later tampered with it.” He offered to help correct the appraisal and arranged a meeting with the village head for reassessment. However, the village head immediately dispatched thugs to block the appraisal team, threatening them and preventing any changes from being made. Before being forced to leave, the appraisal manager advised me, “Your old house has both a land certificate and title deed, but they excluded the area from calculations. Your new villa’s appraisal has been manipulated. You should take legal action. Also, given your son’s health issues and recent unemployment due to the demolitions, they should provide him with work.” Following his guidance, I obtained two certifications from the village committee granting two storefronts for my son—a promise that remains unfulfilled to this day.
 
-Desperate and running out of options, I began making regular appeals to Binhu District Party Secretary Dai Jieping, often waiting outside his home. His elderly mother, who lived with him, offered me compassion: “You must not give up on life. You must stay strong. Keep appealing step by step, eventually someone will listen to reason.” I also submitted my petitions to Wuxi Municipal Party Secretary Mao Xiaoping, the People’s Congress Director, and Secretary Dai himself. Although each level issued directives, local officials simply ignored them. Even when I escalated my case to the provincial level and requested information disclosure , the resulting provincial directives met the same fate. This experience revealed to me how thoroughly corruption could override the law.
+Desperate and running out of options, I began making regular appeals to Binhu District Party Secretary Dai Jieping, often waiting outside his home. His elderly mother, who lived with him, offered me compassion: “You must not give up on life. You must stay strong. Keep appealing step by step, eventually someone will listen to reason.” I also submitted my petitions to Wuxi Municipal Party Secretary Mao Xiaoping, the People’s Congress Director, and Secretary Dai himself. Although each level issued directives, local officials simply ignored them. Even when I escalated my case to the provincial level and requested information disclosure [6], the resulting provincial directives met the same fate. This experience revealed to me how thoroughly corruption could override the law.
 
 On July 28, 2003, while we were temporarily living at my daughter’s home, we were informed at dawn that our villa was being demolished. My husband and I rushed to the site to find our meticulously built house being torn apart. The village head had long coveted the villa’s four large gates. By the time we arrived, his men had already dismantled the gates, loaded them onto a truck, and taken them to replace the gates of his own house. There were at least a dozen people at the site, but I was too overwhelmed to count. My husband stood by the site, weeping helplessly. After watching in despair for a while, we could do nothing but leave.
 
@@ -80,23 +80,23 @@ I have no farmland, no pigs, and no proper home. My husband worked tirelessly fo
 `;
 
 const chineseText = `
-我叫郁秀兰，在江苏省无锡市滨湖区华庄街道永安村拥有三处房产：原居住地45号，一栋新建的别墅（临时编号为45-1），以及一个面积为343.7平方米的生产性猪场。此外，我还有四亩（合2,667平方米）承包地，其中两亩是合同明确规定"三十年不变"的。至今，所有相关合同、房产证和钥匙都完好地保存在我手中，从未交给拆迁部门。
+我叫郁秀兰，在江苏省无锡市滨湖区华庄街道永安村拥有三处房产：原居住地45号，一栋新建的别墅（临时编号为45-1），以及一个面积为343.7平方米的生产性猪场。此外，我还有四亩（合2,667平方米）承包地，其中两亩是合同明确规定"三十年不变" [1] 的。至今，所有相关合同、房产证和钥匙都完好地保存在我手中，从未交给拆迁部门。
 
 我的三栋房子不在一个地块：新建别墅在大通路上，老房子在老华庄村内，猪场则设在我承包地的桑田里。政府分三次强行征收这些房产，但在确定安置补偿时却要求一并处理。新建的别墅超过300平方米，用料考究，是专门为我儿子成家准备的。为了建这座房子，我们不仅投入了全部积蓄，还借了数万元。我儿子从十五岁就患上了严重的肾炎，直到二十岁才开始康复。因为这场病，他一直找不到对象。他曾对我们说："爸妈，我们靠养猪、杀猪、卖肉为生，钱总能再挣来，但房子我们造好一些，讨老婆容易一些。"公社考虑到我儿子的病情照顾我们一家，批准我们在承包地上建了猪场，让我们母子一起经营。八年间，我们猪场已经上了规模，到被强拆时已经养到了178头猪。两个人养这么多猪是极其辛苦的，儿子负责白天照料猪场，我去收集剩菜剩饭做猪食，我们都干到精疲力尽，我丈夫在工厂里也是累得要死。这座我们付出如此多心血的新房子，我们却一晚都没能住进去就被抢走了。
 
-2002年10月，我的新房刚刚建好，村里和街道的人就通知我们要拆迁。然而，他们没有任何合法文件或手续。我和丈夫拒绝拆迁，他们就找来了村里的两个“青头”（地痞流氓）和一家评估公司。他们当时走走看看，敷衍了事，根本没有进行正式评估。到了2003年，他们的手段变得更加强硬。拆迁队伍与村干部和这些冒充执法人员的地痞勾结在一起，开始系统性地施压，迫使村民就范。
+2002年10月，我的新房刚刚建好，村里和街道的人就通知我们要拆迁。然而，他们没有任何合法文件或手续。我和丈夫拒绝拆迁，他们就找来了村里的两个“青头” [2] （地痞流氓）和一家评估公司。他们当时走走看看，敷衍了事，根本没有进行正式评估。到了2003年，他们的手段变得更加强硬。拆迁队伍与村干部和这些冒充执法人员的地痞勾结在一起，开始系统性地施压，迫使村民就范。
 
 我丈夫并非农村人，他十八岁时父亲去世了，他便顶替父亲进厂工作，承担起养家的责任。正因如此，他对农村的土地政策和产权制度并不了解。2003年3月29日星期天，他难得在家休息。下午一点刚吃完午饭，村里人就把他叫走了。我儿子有不祥的预感，试图劝阻他不要去，但他还是去了。
 
-当晚九点，我在猪场忙完活儿后，心里越发不安，就拜托小女婿开车送我去村里。我担心他们会逼迫我丈夫签字。到了那里，村支书、村长和大队农具员三人拦在门口，不让我进去。我无奈只能回家，而我丈夫还被关在里面。直到午夜，他终于回来了，但整个人都崩溃了。"我实在没办法，不得不签了。"他羞愧绝望得一边痛哭一边不停地打自己耳光。
+当晚九点，我在猪场忙完活儿后，心里越发不安，就拜托小女婿开车送我去村里。我担心他们会逼迫我丈夫签字。到了那里，村支书 [3]、村长和大队农具员三人拦在门口，不让我进去。我无奈只能回家，而我丈夫还被关在里面。直到午夜，他终于回来了，但整个人都崩溃了。"我实在没办法，不得不签了。"他羞愧绝望得一边痛哭一边不停地打自己耳光。
 
-我追问他："到底怎么会签的？"他描述说，村里的会计——一个身材高大魁梧的男人——直接把他抱起来按到签字的桌子上。大队书记、村长和会计围在他周围，还有一个拆迁办的黑道场的人把桌子拍得砰砰响。他们恐吓我丈夫说："今天不签字，明天一分钱补偿都没有！" 在经历了长达11个小时的肢体和精神胁迫，包括推搡、恐吓和喝斥之后，我丈夫最终在协议上签了字。更荒谬的是，那份协议是空白的，而且我丈夫根本就不是合法的产权人。
+我追问他："到底怎么会签的？"他描述说，村里的会计——一个身材高大魁梧的男人——直接把他抱起来按到签字的桌子上。大队书记、村长和会计围在他周围，还有一个拆迁办的黑道场的人把桌子拍得砰砰响。他们恐吓我丈夫说："今天不签字，明天一分钱补偿都没有！" 在经历了长达11个小时的肢体和精神胁迫，包括推搡、恐吓和喝斥之后，我丈夫最终在协议上签了字。更荒谬的是，那份协议是空白的 [5] ，而且我丈夫根本就不是合法的产权人。
 
 后来，一个拆迁办的人对我儿子说："你家的房子是这片区域建得最好的，可赔偿却几乎等于没有。你能不能找懂行（熟悉拆迁内部运作）的人重新改一改，帮你们争取到合理的补偿？”但我们没有门路，没有办法。后来，我儿子去了解细节，补偿少得令人震惊：我们超过300平方米、用料上乘的新别墅，仅被估价16.6万元；那个养活我们全家、面积达343.7平方米的猪场，只补偿了3万多元；而我们约300平方米的老房子，这个靠我八年来做豆制品生意——卖素鸡、百叶等辛苦积攒钱盖起来的房子，竟然只补偿了8.99万元。这座老房子凝聚着我日日夜夜的心血，在它建成上梁之后，我还在那里嫁出了我的大女儿。
 
 当得知这些数字后，我儿子精神几乎崩溃。看到我们辛苦建立的一切被如此贬值，他完全失去了理智，在田里到处乱跑。后来居然离家出走，失踪了好几天，后来我们才知道他还跑到南京去了两次，真的是痴狂了。
 
-与此同时，我一个人要照顾这么多猪，还要维持摇摇欲坠的家。2003年4月2日，趁我出门做生意的时候，他们强行拆除了我们的老房子，洗劫了我们的家。房子的楼板被撬走，锅碗瓢盆扔得满院子都是，家里任何值钱的东西也被偷得一干二净。我丈夫已经去上访了，儿子离家出走还没有回来，两个女儿正在各个火车站寻找弟弟。我一个人孤立无援，只好去拆迁办讨说法。我质问："我没有在任何文件上签字，房产证和钥匙都还在我手上，你们凭什么拆我的房子？"他们冷漠地回答："你老头子签字了，这事就定了，没用了。"
+与此同时，我一个人要照顾这么多猪，还要维持摇摇欲坠的家。2003年4月2日，趁我出门做生意的时候，他们强行拆除了我们的老房子，洗劫了我们的家。房子的楼板被撬走，锅碗瓢盆扔得满院子都是，家里任何值钱的东西也被偷得一干二净。我丈夫已经去上访 [5] 了，儿子离家出走还没有回来，两个女儿正在各个火车站寻找弟弟。我一个人孤立无援，只好去拆迁办讨说法。我质问："我没有在任何文件上签字，房产证和钥匙都还在我手上，你们凭什么拆我的房子？"他们冷漠地回答："你老头子签字了，这事就定了，没用了。"
 
 我丈夫回来后，看到家被拆，绝望得试图自杀。幸好，我女儿终于打通了儿子的电话，用父亲的情况劝他回了家。家没了，我们一家三口只能搬到猪场里住。
 
@@ -106,7 +106,7 @@ const chineseText = `
 
 2003年4月到5月初，无锡的天气炎热，气温高达38到40度。我和儿子跑了六次无锡农业有限公司的评估公司，质问他们："为什么把我们全新的别墅按老房子的标准评估，只赔偿十几万元？"评估公司的经理起初告诉我，评估报告中确实写的是"别墅"，但后来被村里的地痞流氓篡改了。他愿意帮我们更正，于是与村长约定了时间重新评估。没想到，村长立刻安排一些地痞流氓守在那里，威胁评估公司的人，不许帮我改正结果。离开时，评估公司的经理对我说："你的老房子有土地证和产权证，却不给算面积，产权人没有签字，新房弄成这样，你应该去起诉。还有你儿子身体不好、没有工作，应该叫他们给他安排工作。"听了他的话，我到大队开了两张证明，申请给儿子批两间店面，可这件事至今没有落实。
 
-走投无路的我开始定期向滨湖区区委书记戴解平上访，经常在他家门外等候。他与他同住的年迈母亲对我表示同情："你不能放弃生命。你必须坚强。要一步一步地上访，总会有人听取道理的。"我还向无锡市委书记毛小平、人大主任和戴书记本人提交了请愿书。虽然每个层级都下达了指示，但地方官员置之不理。即使我将案件升级到省级并要求信息公开，省级指示的结果也是同样的命运。这段经历向我揭示了腐败如何彻底凌驾于法律之上。
+走投无路的我开始定期向滨湖区区委书记戴解平上访，经常在他家门外等候。他与他同住的年迈母亲对我表示同情："你不能放弃生命。你必须坚强。要一步一步地上访，总会有人听取道理的。"我还向无锡市委书记毛小平、人大主任和戴书记本人提交了请愿书。虽然每个层级都下达了指示，但地方官员置之不理。即使我将案件升级到省级并要求信息公开 [6]，省级指示的结果也是同样的命运。这段经历向我揭示了腐败如何彻底凌驾于法律之上。
 
 2003年7月28日，当我们暂住在女儿家时，天刚亮就收到通知说我们的别墅正在被拆除。我和丈夫赶到现场，发现我们精心建造的房子正在被拆得支离破碎。村长一直觊觎别墅的四扇大门。等我们到达时，他的人已经拆下了大门，装上卡车，运去替换他自己房子的大门。现场至少有十几个人，但我过于震惊，无法数清。我丈夫站在现场，无助地哭泣。绝望地看了一会后，我们只能离开。
 
@@ -157,6 +157,30 @@ const chineseText = `
 我没有农田，没有猪，也没有像样的家。我丈夫辛勤工作了43年，却因暴力强拆带来的刺激而两次中风，只领了几个月的退休金就去世了。我儿子的身体也不好，家里的经济十分艰难。尽管如此，我仍然拒绝放弃。我每天坚持写日记，建立起我唯一剩下的武器——真相。我写下这些，希望有一天，真相能大白于天下，正义终将得到声张。
 `;
 
+const parsedEnglish = parseParagraphs(englishText, 'en');
+const parsedChinese = parseParagraphs(chineseText, 'ch');
+
+// Manually add footnoteId to some paragraphs for testing
+if (parsedEnglish.length > 0) {
+  parsedEnglish[0].footnoteId = "1";
+}
+if (parsedEnglish.length > 1) {
+  parsedEnglish[1].footnoteId = "2";
+}
+if (parsedEnglish.length > 2) {
+  parsedEnglish[2].footnoteId = "3";
+}
+
+if (parsedChinese.length > 0) {
+  parsedChinese[0].footnoteId = "1";
+}
+if (parsedChinese.length > 1) {
+  parsedChinese[1].footnoteId = "2";
+}
+if (parsedChinese.length > 2) {
+  parsedChinese[2].footnoteId = "3";
+}
+
 const data = [
   {
 //    name: "Yu Xiulan 郁秀兰",
@@ -169,12 +193,12 @@ const data = [
     profileId: "a",
     id: "yu-xiulan",
 //   sign: true,
-    audio: [
-      {
-        name: "Audio clip 1",
-        src: "https://res.cloudinary.com/pang-dev/video/upload/v1677709255/CCLT/donggua.mp3",
-      },
-    ],
+//    audio: [
+//      {
+//        name: "Audio clip 1",
+//        src: "https://res.cloudinary.com/pang-dev/video/upload/v1677709255/CCLT/donggua.mp3",
+//      },
+//    ],
     images: [
       {
         link: "https://res.cloudinary.com/dmi3ywlal/image/upload/v1717769294/Jianhua_Tang_garden_p53zqs.jpg",
@@ -190,6 +214,21 @@ const data = [
       ...parseParagraphs(englishText, 'en'),
       ...parseParagraphs(chineseText, 'ch'),
     ],
+    // New footnotes array with a few random footnotes for testing.
+    footnotes: [
+      { id: "1", en: "The 'thirty-year unchanged' land contract policy, initiated through the 1984 'Document No. 1' (中央一号文件), represented a cornerstone of China's rural reforms. This policy guaranteed farmers' land use rights for three decades, marking a significant departure from the commune system. ", 
+                 ch: "'三十年不变'土地合同政策始于1984年的《中央一号文件》，是中国农村改革的基石。该政策保障了农民三十年的土地使用权，标志着人民公社体制的退役。" },
+      { id: "2", en: "'Qingtou' (青头), a colloquial term used to describe local thugs or enforcers often employed unofficially by authorities to intimidate residents during forced demolitions. The parenthetical translation '地痞流氓' in the Chinese text explicitly identifies them as 'local ruffians and hooligans.'", 
+                 ch: "'青头'，地方俗语，指地方当局在强制拆迁时非正式雇用的地痞流氓，用来恐吓居民。" },
+      { id: "3", en: "The highest-ranking Communist Party official at the village level, wielding significant political and administrative power in rural areas.", 
+                 ch: "村级党组织最高级别的官员，在农村地区掌握重要的政治和行政权力。" },
+      { id: "4", en: "Blank contracts (空白协议) represent a documented form of administrative coercion that violates Article 52 of China's Contract Law (合同法). Legal scholarship indicates that between 15-20% of demolition agreements in major cities involved such practices during the early 2000s. ",
+                 ch: "空白协议是一种有据可查的行政胁迫形式，违反了《中国合同法》第52条的规定。法律研究表明，在2000年代初期，中国主要城市中15-20%的拆迁案件协议涉及此类做法。"},
+      { id: "5", en: "The petition system is an administrative system in China allowing citizens to seek redress for grievances by appealing to progressively higher levels of government, culminating in appeals to Beijing. The system dates back to imperial times but continues to serve as a parallel channel to legal procedures.",
+                 ch: "信访制度是中国的一种行政体系，允许公民通过向更高层级政府申诉来寻求救济，最终可上访至北京。该制度可追溯至帝制时期，至今仍作为法律程序的平行渠道继续存在。"},
+      { id: "6", en: "A legal mechanism introduced in China in 2008 allowing citizens to request government information, similar to Freedom of Information requests in other countries.",
+                 ch: "政府信息公开制度是中国于2008年推出的法律机制，允许公民申请获取政府信息，类似于其他国家的信息自由申请制度。"},
+    ],
     // If you want the quote:
     // quote: [
     //   { type: 'en', default: '...' },
@@ -198,8 +237,8 @@ const data = [
     // ],
     resources: [
       {
-        title: "Interview with Tang Jianhua 湯建華採訪",
-        author: "by Daphne Xu 徐乙漾",
+        title: "Interview with Tang Jianhua",
+        // author: "by Daphne Xu 徐乙漾",
         date: "",
         chTitle: "",
         chAuthor: "",
