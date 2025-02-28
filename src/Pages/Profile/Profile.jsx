@@ -12,6 +12,7 @@ const Profile = () => {
   const [profile, setProfile] = useState('');
   const [imageId, setImageId] = useState(0);
   const [showArrow, setShowArrow] = useState(false);
+  const [currentLang, setCurrentLang] = useState('en');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,81 +23,6 @@ const Profile = () => {
       navigate(`/404`);
     }
   }, [id, navigate]);
-
-  const quoteParser = (quote) => {
-    if (!quote || quote.length === 0) return null;
-    const englishQuotes = quote.filter(
-      (q) => q.type === 'en' && q.type !== 'attribution'
-    );
-    const chineseQuotes = quote.filter(
-      (q) => q.type === 'ch' && q.type !== 'attribution'
-    );
-
-    // Check the first quote's type to decide which one appears first
-    if (quote[0].type === 'en') {
-      return (
-        <QuoteContainer>
-          <EnglishQuote>
-            <QuoteMarks>“</QuoteMarks>
-            {englishQuotes.map((item, index) => (
-              <div key={index}>
-                {item.default}
-                <br />
-                <br />
-              </div>
-            ))}
-            <QuoteMarks>”</QuoteMarks>
-          </EnglishQuote>
-          <ChineseQuote>
-            <QuoteMarks>“</QuoteMarks>
-            {chineseQuotes.map((item, index) => (
-              <div key={index}>
-                {item.default}
-                <br />
-                <br />
-              </div>
-            ))}
-            <QuoteMarks>”</QuoteMarks>
-            <Attributions>
-              <b>Source: </b>
-              {quote.find(item => item.type === 'attribution')?.default || 'Unknown'}
-            </Attributions>
-          </ChineseQuote>
-        </QuoteContainer>
-      );
-    } else {
-      return (
-        <QuoteContainer>
-          <ChineseQuote>
-            <QuoteMarks>“</QuoteMarks>
-            {chineseQuotes.map((item, index) => (
-              <div key={index}>
-                {item.default}
-                <br />
-                <br />
-              </div>
-            ))}
-            <QuoteMarks>”</QuoteMarks>
-          </ChineseQuote>
-          <EnglishQuote>
-            <QuoteMarks>“</QuoteMarks>
-            {englishQuotes.map((item, index) => (
-              <div key={index}>
-                {item.default}
-                <br />
-                <br />
-              </div>
-            ))}
-            <QuoteMarks>”</QuoteMarks>
-            <Attributions>
-              <b>Source: </b>
-              {quote.find(item => item.type === 'attribution')?.default || 'Unknown'}
-            </Attributions>
-          </EnglishQuote>
-        </QuoteContainer>
-      );
-    }
-  };
 
   const handleNegativeClick = () => {
     if (imageId - 1 < 0) return;
@@ -115,81 +41,96 @@ const Profile = () => {
   const englishParagraphs = profile.description.filter(item => item.type === 'en');
   const chineseParagraphs = profile.description.filter(item => item.type === 'ch');
 
-  // We'll pair them up by index in the render
-  const maxLength = Math.max(englishParagraphs.length, chineseParagraphs.length);
-
   return (
     <Wrapper>
       <BodyWrapper>
-        <Island data={profile} />
-        <Body>
-          {Array.from({ length: maxLength }).map((_, index) => (
-            <ParagraphRow key={index}>
-              <ParagraphColumn>
-                <EnglishText>
-                  {englishParagraphs[index]?.default || ''}
-                </EnglishText>
-              </ParagraphColumn>
-              <ParagraphColumn>
-                <ChineseText>
-                  {chineseParagraphs[index]?.default || ''}
-                </ChineseText>
-              </ParagraphColumn>
-            </ParagraphRow>
-          ))}
+        {/* Panel 1: Left Panel */}
+        <LeftPanel>
+          <Island data={profile} />
+        </LeftPanel>
 
-          {profile.quote && quoteParser(profile.quote)}
+        {/* Panel 2: Middle Panel */}
+        <MiddlePanel>
+          <Body>
+            <ToggleContainer>
+              <ToggleButton active={currentLang === 'en'} onClick={() => setCurrentLang('en')}>
+                English
+              </ToggleButton>
+              <ToggleButton active={currentLang === 'ch'} onClick={() => setCurrentLang('ch')}>
+                中文
+              </ToggleButton>
+            </ToggleContainer>
 
-          <Carousel
-            onMouseEnter={() => setShowArrow(true)}
-            onMouseLeave={() => setShowArrow(false)}
-          >
-            <CarouselButton
-              limit={profile.images.length - 1 === imageId}
-              pos={'right'}
-              onClick={handlePositiveClick}
+            {currentLang === 'en'
+              ? englishParagraphs.map((item, index) => (
+                  <Paragraph key={index}>
+                    <EnglishText>{item.default}</EnglishText>
+                  </Paragraph>
+                ))
+              : chineseParagraphs.map((item, index) => (
+                  <Paragraph key={index}>
+                    <ChineseText>{item.default}</ChineseText>
+                  </Paragraph>
+                ))
+            }
+
+            <Carousel
+              onMouseEnter={() => setShowArrow(true)}
+              onMouseLeave={() => setShowArrow(false)}
             >
-              <ArrowForward />
-            </CarouselButton>
-            <CarouselButton
-              limit={imageId === 0}
-              pos={'left'}
-              onClick={handleNegativeClick}
-            >
-              <ArrowBack />
-            </CarouselButton>
-            {profile.images && (
-              <a href={profile.images[imageId].link}>
-                <img
-                  src={profile.images[imageId].link}
-                  style={{ height: '500px', margin: 'auto' }}
-                  alt=""
-                />
-              </a>
+              <CarouselButton
+                limit={profile.images.length - 1 === imageId}
+                pos="right"
+                onClick={handlePositiveClick}
+              >
+                <ArrowForward />
+              </CarouselButton>
+              <CarouselButton
+                limit={imageId === 0}
+                pos="left"
+                onClick={handleNegativeClick}
+              >
+                <ArrowBack />
+              </CarouselButton>
+              {profile.images && (
+                <a href={profile.images[imageId].link}>
+                  <img
+                    src={profile.images[imageId].link}
+                    style={{ height: '500px', margin: 'auto' }}
+                    alt=""
+                  />
+                </a>
+              )}
+            </Carousel>
+            <ImageCaption>{profile.images[imageId].caption}</ImageCaption>
+            <ImageCaptionChinese>
+              {profile.images[imageId].chCaption}
+            </ImageCaptionChinese>
+            <Counter>
+              {imageId + 1}/{profile.images.length}
+            </Counter>
+
+            {profile?.resources && (
+              <div>
+                <LearnMoreTitle>Learn More</LearnMoreTitle>
+                <LearnMoreSubtitle>
+                  Check out more resources submitted by our community.
+                </LearnMoreSubtitle>
+                {profile.resources.map((resource, index) => (
+                  <LearnMore key={index} resource={resource} />
+                ))}
+              </div>
             )}
-          </Carousel>
-          <ImageCaption>{profile.images[imageId].caption}</ImageCaption>
-          <ImageCaptionChinese>{profile.images[imageId].chCaption}</ImageCaptionChinese>
-          <Counter>
-            {imageId + 1}/{profile.images.length}
-          </Counter>
+          </Body>
+        </MiddlePanel>
 
-          {profile?.secondaryQuote && quoteParser(profile.secondaryQuote)}
-
-          <Border />
-
-          {profile?.resources && (
-            <div>
-              <LearnMoreTitle>Learn More</LearnMoreTitle>
-              <LearnMoreSubtitle>
-                Check out more resources submitted by our community.
-              </LearnMoreSubtitle>
-              {profile.resources.map((resource, index) => (
-                <LearnMore key={index} resource={resource} />
-              ))}
-            </div>
-          )}
-        </Body>
+        {/* Panel 3: New Right Panel */}
+        <RightPanel>
+          <Placeholder>
+            {/* Replace this with your desired content */}
+            Additional content goes here.
+          </Placeholder>
+        </RightPanel>
       </BodyWrapper>
     </Wrapper>
   );
@@ -199,36 +140,95 @@ export default Profile;
 
 /* ------------------ Styled Components ------------------ */
 
-// Container for each row of paragraphs
-const ParagraphRow = styled.div`
+const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: flex-start; /* top-aligned */
-  margin-bottom: 32px;
-  gap: 24px; /* space between the two columns */
+  width: 100%;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
 `;
 
-// Each column is 50% width; tweak as needed
-const ParagraphColumn = styled.div`
-  width: 50%;
+const BodyWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+`;
+
+/* Panel Definitions */
+const LeftPanel = styled.div`
+  flex: 1;
+`;
+
+const MiddlePanel = styled.div`
+  flex: 2;
+`;
+
+const RightPanel = styled.div`
+  flex: 1;
+`;
+
+/* Body of Middle Panel */
+const Body = styled.div`
+  padding: 32px 48px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(66, 63, 103, 0.25);
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  @media (max-width: 800px) {
+    height: auto;
+    border-left: none;
+  }
+`;
+
+/* Toggle Buttons for Language */
+const ToggleContainer = styled.div`
+  display: flex;
+  margin-bottom: 16px;
+`;
+
+const ToggleButton = styled.button`
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: ${props => (props.active ? '#423f67' : '#fff')};
+  color: ${props => (props.active ? '#fff' : '#423f67')};
+  border: 1px solid #423f67;
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+`;
+
+/* Paragraphs and Text */
+const Paragraph = styled.div`
+  margin-bottom: 24px;
 `;
 
 const EnglishText = styled.div`
-  font-family: 'Quattrocento';
+  font-family: 'Lora', serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 450;
   font-size: 16px;
-  line-height: 26px;
-  color: #1e1e1e;
+  line-height: 22px;
+  color: #000;
 `;
 
 const ChineseText = styled.div`
-  font-family: 'Noto Serif TC';
+  font-family: 'Noto Serif';
   font-size: 16px;
-  line-height: 26px;
-  color: #1e1e1e;
+  font-weight: 400;
+  line-height: 22px;
+  color: #000;
 `;
 
+/* Learn More Section */
 const LearnMoreSubtitle = styled.div`
   font-family: 'Quattrocento';
   font-style: normal;
@@ -251,16 +251,16 @@ const LearnMoreTitle = styled.div`
 
 const Border = styled.div`
   border-top: 1px solid rgba(66, 63, 103, 0.25);
-  margin: 32px 0px;
+  margin: 32px 0;
   width: 100%;
 `;
 
 const ImageCaption = styled.div`
-  font-family: 'Quattrocento';
+  font-family: 'Lora', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 18px;
   color: #1e1e1e;
 `;
 
@@ -272,18 +272,19 @@ const Counter = styled.div`
   font-family: 'Quattrocento';
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 22px;
   margin-top: 16px;
   color: #1e1e1e;
 `;
 
+/* Carousel */
 const CarouselButton = styled.button`
   position: absolute;
   top: calc(50% - 8px);
-  left: ${props => props.pos === 'left' && '8px'};
-  right: ${props => props.pos === 'right' && '8px'};
-  opacity: ${props => (props.limit ? 0.5 : 1)};
+  left: ${(props) => props.pos === 'left' && '8px'};
+  right: ${(props) => props.pos === 'right' && '8px'};
+  opacity: ${(props) => (props.limit ? 0.5 : 1)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -293,7 +294,7 @@ const CarouselButton = styled.button`
   width: 40px;
   height: 40px;
   border: none;
-  cursor: ${props => (!props.limit ? 'pointer' : 'default')};
+  cursor: ${(props) => (!props.limit ? 'pointer' : 'default')};
 `;
 
 const Carousel = styled.div`
@@ -306,79 +307,12 @@ const Carousel = styled.div`
   }
 `;
 
-const Attributions = styled.div`
-  font-family: 'Quattrocento';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: #1e1e1e;
-`;
-
-const QuoteMarks = styled.div`
-  font-family: 'Rowdies';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 38px;
-  text-transform: uppercase;
+/* Placeholder for Panel 3 */
+const Placeholder = styled.div`
+  padding: 32px;
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-size: 18px;
   color: #423f67;
-`;
-
-const ChineseQuote = styled.div`
-  padding: 16px 32px;
-  color: #423f67;
-  font-weight: 500;
-  font-family: 'Noto Serif TC';
-`;
-
-const EnglishQuote = styled.div`
-  padding: 16px 32px;
-  color: #423f67;
-  font-weight: 300;
-  font-family: 'Rowdies';
-`;
-
-const QuoteContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin-bottom: 32px;
-`;
-
-const Body = styled.div`
-  padding: 32px 48px;
-  box-sizing: border-box;
-  overflow-y: scroll;
-  height: 100%;
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
   border-left: 1px solid rgba(66, 63, 103, 0.25);
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  @media (max-width: 800px) {
-    height: 100%;
-    border-left: none;
-  }
 `;
-
-const BodyWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-
-  @media (max-width: 800px) {
-    flex-direction: column;
-  }
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  background-color: #fbf6e9;
-  justify-content: center;
-`;
-
