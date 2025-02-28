@@ -159,16 +159,16 @@ const chineseText = `
 
 const data = [
   {
-    name: "Yu Xiulan 郁秀兰",
-    address: "29 Oak Street",
-    chineseAddress: "屋街29號",
+//    name: "Yu Xiulan 郁秀兰",
+//    address: "Yong'an Village No.45, Huazhuang Subdistrict, Binhu District, Wuxi, Jiangsu, China",
+//    chineseAddress: "江苏省无锡市滨湖区华庄街道永安村45号",
     location: { lat: 42.3483134, lng: -71.0632459 },
     cover:
       "https://res.cloudinary.com/pang-dev/image/upload/v1677709248/CCLT/Jianhua_Tang_garden_k2npqh.jpg",
-    hint: "One day, I saw an elderly woman squatting outside the barbed wire fence of our yard, happily counting my melons. 有一天，我看到一位老婦人蹲在我們院子外興高采烈地數著我的瓜。",
+//    hint: "",
     profileId: "a",
     id: "yu-xiulan",
-    sign: true,
+//   sign: true,
     audio: [
       {
         name: "Audio clip 1",
@@ -204,22 +204,6 @@ const data = [
         chTitle: "",
         chAuthor: "",
         link: "https://drive.google.com/file/d/1GD6aOmc_XZl31nHf9As8Gu5Cukf7jm2B/view",
-      },
-      {
-        title: "Interview with Marie Moy on Oak Street",
-        author: "by Lydia Lowe",
-        date: "January 15, 2023",
-        chTitle: "",
-        chAuthor: "",
-        link: "https://drive.google.com/file/d/1WHSguOTdo2o95iQASG99Zt5NsPpBHnD7/view",
-      },
-      {
-        title: "Interview with Eva Peter Chojnowski",
-        author: "by Lydia Lowe",
-        date: "October 13, 2023",
-        chTitle: "",
-        chAuthor: "",
-        link: "https://drive.google.com/file/d/1ktL-Vlq0dd7qPbDpSytzabqfMfqjRhHq/view",
       },
     ],
   },
