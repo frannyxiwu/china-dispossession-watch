@@ -183,10 +183,11 @@ if (parsedChinese.length > 2) {
 
 const data = [
   {
-//    name: "Yu Xiulan 郁秀兰",
-//    address: "Yong'an Village No.45, Huazhuang Subdistrict, Binhu District, Wuxi, Jiangsu, China",
-//    chineseAddress: "江苏省无锡市滨湖区华庄街道永安村45号",
-    location: { lat: 42.3483134, lng: -71.0632459 },
+    name: "Yu Xiulan",
+    chName: '郁秀兰',
+    address: "Yong'an Village No.45, Huazhuang Subdistrict, Binhu District, Wuxi, Jiangsu, China",
+    chineseAddress: "江苏省无锡市滨湖区华庄街道永安村45号",
+    location: { lat: 31.479705841822554, lng: 120.3462864975347 },
     cover:
       "https://res.cloudinary.com/pang-dev/image/upload/v1677709248/CCLT/Jianhua_Tang_garden_k2npqh.jpg",
 //    hint: "",
