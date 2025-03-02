@@ -4,12 +4,17 @@ import { ArrowForward, ArrowBack } from '@mui/icons-material';
 
 import Acorn from '../../../assets/acorn.png';
 import AudioPlayer from './AudioPlayer';
-import StreetViewComponent from './StreetViewComponent';
+// Remove StreetViewComponent import
+import MapViewComponent from './MapViewComponent';
 
 const Island = ({ data, currentLang }) => {
   const [isTooltipShowing, setIsTooltipShowing] = useState(false);
   const [tooltipTimeout, setTooltipTimeout] = useState(null);
   const [imageId, setImageId] = useState(0);
+
+  // Log to see what data is passed in
+  console.log('Island data:', data);
+  console.log('Island data.country:', data.country);
 
   const handleNegativeClick = () => {
     if (imageId - 1 < 0) return;
@@ -51,20 +56,21 @@ const Island = ({ data, currentLang }) => {
 
   return (
     <Wrapper>
-      {/* Example title block
+      {/* Title, SubTitle, Address, etc. can be re-enabled if you need them.
       <Title>{data.name}</Title>
       <SubTitle>“{data.hint}”</SubTitle>
       <Address>{data.address} {data.chineseAddress}</Address>
       */}
 
-      {/* Street View */}
-      <StreetViewComponent
-        location={data.location}
-        heading={data.heading}
+      {/* Always render the Map (removing StreetView entirely) */}
+      <MapViewComponent
+        location={data.location} // location should have { lat, lng }
+        zoom={13}
       />
 
       <Border />
 
+      {/* Audio Players if any exist */}
       {data.audio && data.audio.map((file) => (
         <AudioPlayer key={file.name} file={file} />
       ))}
@@ -119,10 +125,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-
-  /* ↓ Make the padding smaller than before ↓ */
   padding: 16px 24px;
-
   max-width: 539px;
   box-sizing: border-box;
 `;
