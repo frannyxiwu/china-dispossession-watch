@@ -51,11 +51,11 @@ const Header = () => {
                     </FlexDiv>
                 </NavLink>
                 <a 
-                    href={'https://forms.gle/9NPYBbUc8ErcP7tn6'}
+                    href={''}//link for participation
                 >
                     <FlexDiv>
-                        <EngTitle>Submit</EngTitle>
-                        <ChTitle>提交</ChTitle>
+                        <EngTitle>Contact</EngTitle>
+                        <ChTitle>联系</ChTitle>
                     </FlexDiv>
                 </a>
             </NavigationLinkContainer>
@@ -98,7 +98,7 @@ const Header = () => {
                             isActive ? activeStyle : undefined
                         }
                     >
-                        <EngTitle>Submit</EngTitle>
+                        <EngTitle>Contact</EngTitle>
                     </NavLink>
                 </DropdownMenu>
             }

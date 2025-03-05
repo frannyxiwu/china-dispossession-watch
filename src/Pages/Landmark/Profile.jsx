@@ -1,7 +1,8 @@
 import { ArrowForward, ArrowBack } from '@mui/icons-material';
 import styled from 'styled-components';
 import Island from './Components/Island';
-import data from '../../mapData'
+import data from '../../yu-xiulan'
+//import data from './bao-hailan';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import LearnMore from './Components/LearnMore';

@@ -1,4 +1,3 @@
-// mapData.js
 import { parseParagraphs } from './utils/parseParagraphs';
 
 const englishText = `
@@ -201,13 +200,20 @@ const data = [
 //      },
 //    ],
     images: [
+      //{
+      //  mediaType: 'image',
+      //  link: "https://res.cloudinary.com/dmi3ywlal/image/upload/v1717769294/Jianhua_Tang_garden_p53zqs.jpg",
+      //  caption:
+      //    "Former resident Jianhua Tang in her backyard garden on Johnny Court. (CPA photo by Kye Liang)",
+      //  chCaption:
+      //    "前居民湯建華在約翰尼庭院後院她的菜園中。（攝影：Kye Liang，華人前進會）",
+      //},
       {
-        link: "https://res.cloudinary.com/dmi3ywlal/image/upload/v1717769294/Jianhua_Tang_garden_p53zqs.jpg",
-        caption:
-          "Former resident Jianhua Tang in her backyard garden on Johnny Court. (CPA photo by Kye Liang)",
-        chCaption:
-          "前居民湯建華在約翰尼庭院後院她的菜園中。（攝影：Kye Liang，華人前進會）",
-      },
+        mediaType: 'pdf',
+        link:"https://res.cloudinary.com/dsqszwws8/image/upload/v1741125845/Yu_Xiulan_collective_land_use_certificate_%E9%83%81%E7%A7%80%E5%85%B0_%E9%9B%86%E4%BD%93%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E8%AF%81_vyqxdd.pdf",
+        caption: "Collective land use certificate, June 13 2001",
+        chCaption: "集体土地使用证，2001年6月13日",
+      }
     ],
     // Instead of manually typing paragraph by paragraph:
     // We parse the multiline strings into paragraph objects
@@ -230,22 +236,16 @@ const data = [
       { id: "6", en: "A legal mechanism introduced in China in 2008 allowing citizens to request government information, similar to Freedom of Information requests in other countries.",
                  ch: "政府信息公开制度是中国于2008年推出的法律机制，允许公民申请获取政府信息，类似于其他国家的信息自由申请制度。"},
     ],
-    // If you want the quote:
-    // quote: [
-    //   { type: 'en', default: '...' },
-    //   { type: 'ch', default: '...' },
-    //   { type: 'attribution', default: '...' },
-    // ],
-    resources: [
-      {
-        title: "Interview with Tang Jianhua",
+  //  resources: [
+  //    {
+  //      title: "Interview with Tang Jianhua",
         // author: "by Daphne Xu 徐乙漾",
-        date: "",
-        chTitle: "",
-        chAuthor: "",
-        link: "https://drive.google.com/file/d/1GD6aOmc_XZl31nHf9As8Gu5Cukf7jm2B/view",
-      },
-    ],
+  //      date: "",
+  //      chTitle: "",
+  //      chAuthor: "",
+  //      link: "https://drive.google.com/file/d/1GD6aOmc_XZl31nHf9As8Gu5Cukf7jm2B/view",
+  //    },
+  //  ],
   },
 ];
 

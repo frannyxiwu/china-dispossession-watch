@@ -1,4 +1,87 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import Map from '../Map/Map';  // your updated Map component
+import Media from 'react-media';
+
+const Directory = () => {
+  // Example: single or multiple profiles
+  const [profiles] = useState([
+    {
+      id: 'yu-xiulan',
+      title: 'Yu Xiulan',
+      location: { lat: 31.4797, lng: 120.3463 },
+      description: 'Some details about Yu Xiulan...',
+    },
+    // add more if needed
+  ]);
+
+  // Track which profile is selected (when user clicks a marker)
+  const [selectedProfile, setSelectedProfile] = useState(null);
+
+  // Called when a marker is clicked in Map
+  const handleMarkerClick = (profileId) => {
+    // Find the profile in your array
+    const foundProfile = profiles.find(p => p.id === profileId);
+    setSelectedProfile(foundProfile);
+  };
+
+  return (
+    <Wrapper>
+      <Media queries={{ small: '(max-width: 599px)', large: '(min-width: 600px)' }}>
+        {matches => (
+          <>
+            <MapContainer>
+              {/* Pass the profiles array and the marker-click callback */}
+              <Map 
+                data={profiles} 
+                onMarkerClick={handleMarkerClick}
+              />
+            </MapContainer>
+
+            <SidePanel>
+              {selectedProfile ? (
+                <>
+                  <h2>{selectedProfile.title}</h2>
+                  <p>{selectedProfile.description}</p>
+                </>
+              ) : (
+                <p>Click a marker to see details here.</p>
+              )}
+            </SidePanel>
+          </>
+        )}
+      </Media>
+    </Wrapper>
+  );
+};
+
+export default Directory;
+
+/*────────────────────────────────────────────
+   STYLED COMPONENTS
+────────────────────────────────────────────*/
+
+const Wrapper = styled.div`
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* So we don't get a global scrollbar */
+`;
+
+const MapContainer = styled.div`
+  flex: 3; /* Make the map take ~3 parts of the width */
+`;
+
+const SidePanel = styled.div`
+  flex: 1; /* The panel takes 1 part of the width */
+  border-left: 1px solid #ccc;
+  padding: 16px;
+  overflow-y: auto; /* So the panel can scroll if content is tall */
+`;
+
+
+
+{/* import styled from 'styled-components';
 import ProfileList from './Components/ProfileList';
 import HistoryTrail from './Components/HistoryTrail';
 import HistoryTrailMobile from './Components/HistoryTrailMobile';
@@ -146,3 +229,4 @@ const Wrapper = styled.div`
     display: flex;
     transition: all .12s ease-in-out;
 `
+*/}

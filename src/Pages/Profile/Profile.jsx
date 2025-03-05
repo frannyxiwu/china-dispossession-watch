@@ -1,21 +1,18 @@
-import { ArrowForward, ArrowBack } from '@mui/icons-material';
-import styled from 'styled-components';
-import Island from './Components/Island';
-import data from '../../mapData';
 import { useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import LearnMore from './Components/LearnMore';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import Island from './Components/Island';
+import data from '../../yu-xiulan';
 
 const Profile = () => {
   const { id } = useParams();
   const [profile, setProfile] = useState('');
-  const [imageId, setImageId] = useState(0);
-  const [showArrow, setShowArrow] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
   const [currentFootnoteId, setCurrentFootnoteId] = useState(null);
   const navigate = useNavigate();
 
+  // Refs for paragraphs and footnotes
   const paragraphRefs = useRef([]);
   const footnoteRefs = useRef({});
 
@@ -28,7 +25,7 @@ const Profile = () => {
     }
   }, [id, navigate]);
 
-  // Intersection Observer for paragraphs with footnotes
+  // Intersection Observer: highlight footnote in right panel
   useEffect(() => {
     if (!paragraphRefs.current) return;
     const observer = new IntersectionObserver(
@@ -43,7 +40,7 @@ const Profile = () => {
       { threshold: 0.5 }
     );
 
-    paragraphRefs.current.forEach((el) => {
+    paragraphRefs.current.forEach(el => {
       if (el) observer.observe(el);
     });
 
@@ -52,6 +49,7 @@ const Profile = () => {
     };
   }, [profile, currentLang]);
 
+  // Scroll RightPanel to the matching footnote
   useEffect(() => {
     if (currentFootnoteId && footnoteRefs.current[currentFootnoteId]) {
       footnoteRefs.current[currentFootnoteId].scrollIntoView({
@@ -63,11 +61,11 @@ const Profile = () => {
 
   if (!profile) return null;
 
-  // Separate out English vs Chinese paragraphs
+  // Separate English vs. Chinese paragraphs
   const englishParagraphs = profile.description.filter(item => item.type === 'en');
   const chineseParagraphs = profile.description.filter(item => item.type === 'ch');
 
-  // Footnote link helper
+  // Clicking [1], [2], etc. => scroll the RightPanel
   const FootnoteLink = ({ footnoteId }) => {
     const handleClick = () => {
       if (footnoteRefs.current[footnoteId]) {
@@ -80,7 +78,7 @@ const Profile = () => {
     return <Superscript onClick={handleClick}>[{footnoteId}]</Superscript>;
   };
 
-  // Replace [1], [2], etc. with clickable footnote links
+  // Convert "[1]" => <FootnoteLink footnoteId="1" />
   const renderTextWithFootnotes = (text) => {
     const parts = text.split(/(\[\d+\])/g);
     return parts.map((part, index) => {
@@ -95,21 +93,14 @@ const Profile = () => {
 
   return (
     <Wrapper>
-      {/* 
-         ─────────────────────────────────────────
-         TOP BAR — uses separate EN vs. CH fields
-         ─────────────────────────────────────────
-       */}
       <ProfileTopBar>
         {currentLang === 'en' ? (
-          /* EN version: .name, .hint, .address */
           <>
             {profile.name && <Title>{profile.name}</Title>}
             {profile.hint && <SubTitle>“{profile.hint}”</SubTitle>}
             {profile.address && <Address>{profile.address}</Address>}
           </>
         ) : (
-          /* CH version: .chName, .chHint, .chineseAddress */
           <>
             {profile.chName && <Title>{profile.chName}</Title>}
             {profile.chHint && <SubTitle>“{profile.chHint}”</SubTitle>}
@@ -118,81 +109,78 @@ const Profile = () => {
         )}
       </ProfileTopBar>
 
-      {/* 
-         ─────────────────────────────────────────
-         3-PANEL LAYOUT
-         ─────────────────────────────────────────
-      */}
-      <BodyWrapper>
-        {/* Panel 1: Left */}
+      <ContentWrapper>
+        {/* Sticky Left Panel with no scrolling */}
         <LeftPanel>
           <Island data={profile} currentLang={currentLang} />
         </LeftPanel>
 
-        {/* Panel 2: Middle */}
-        <MiddlePanel>
-          <Body>
-            <ToggleContainer>
-              <ToggleButton
-                active={currentLang === 'en'}
-                onClick={() => setCurrentLang('en')}
-              >
-                English
-              </ToggleButton>
-              <ToggleButton
-                active={currentLang === 'ch'}
-                onClick={() => setCurrentLang('ch')}
-              >
-                中文
-              </ToggleButton>
-            </ToggleContainer>
-
-            {currentLang === 'en'
-              ? englishParagraphs.map((item, index) => (
-                  <Paragraph
-                    key={index}
-                    ref={el => (paragraphRefs.current[index] = el)}
-                    data-footnote-id={item.footnoteId || null}
-                  >
-                    <EnglishText>{renderTextWithFootnotes(item.default)}</EnglishText>
-                  </Paragraph>
-                ))
-              : chineseParagraphs.map((item, index) => (
-                  <Paragraph
-                    key={index}
-                    ref={el => (paragraphRefs.current[index] = el)}
-                    data-footnote-id={item.footnoteId || null}
-                  >
-                    <ChineseText>{renderTextWithFootnotes(item.default)}</ChineseText>
-                  </Paragraph>
-                ))}
-          </Body>
-        </MiddlePanel>
-
-        {/* Panel 3: Right */}
-        <RightPanel>
-          <FootnotesContainer>
-            {profile.footnotes &&
-              profile.footnotes.map(footnote => (
-                <Footnote
-                  key={footnote.id}
-                  ref={el => (footnoteRefs.current[footnote.id] = el)}
-                  onClick={() => {
-                    const target = paragraphRefs.current.find(
-                      el => el && el.getAttribute('data-footnote-id') === footnote.id
-                    );
-                    if (target) {
-                      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                  }}
+        {/* Middle + Right side by side, each scrollable */}
+        <RightWrapper>
+          <MiddlePanel>
+            <Body>
+              <ToggleContainer>
+                <ToggleButton
+                  active={currentLang === 'en'}
+                  onClick={() => setCurrentLang('en')}
                 >
-                  <Superscript>[{footnote.id}]</Superscript>{' '}
-                  {currentLang === 'en' ? footnote.en : footnote.ch}
-                </Footnote>
-              ))}
-          </FootnotesContainer>
-        </RightPanel>
-      </BodyWrapper>
+                  English
+                </ToggleButton>
+                <ToggleButton
+                  active={currentLang === 'ch'}
+                  onClick={() => setCurrentLang('ch')}
+                >
+                  中文
+                </ToggleButton>
+              </ToggleContainer>
+
+              {currentLang === 'en'
+                ? englishParagraphs.map((item, index) => (
+                    <Paragraph
+                      key={index}
+                      ref={el => (paragraphRefs.current[index] = el)}
+                      data-footnote-id={item.footnoteId || null}
+                    >
+                      <EnglishText>{renderTextWithFootnotes(item.default)}</EnglishText>
+                    </Paragraph>
+                  ))
+                : chineseParagraphs.map((item, index) => (
+                    <Paragraph
+                      key={index}
+                      ref={el => (paragraphRefs.current[index] = el)}
+                      data-footnote-id={item.footnoteId || null}
+                    >
+                      <ChineseText>{renderTextWithFootnotes(item.default)}</ChineseText>
+                    </Paragraph>
+                  ))}
+            </Body>
+          </MiddlePanel>
+
+          <RightPanel>
+            <FootnotesContainer>
+              {profile.footnotes &&
+                profile.footnotes.map(footnote => (
+                  <Footnote
+                    key={footnote.id}
+                    ref={el => (footnoteRefs.current[footnote.id] = el)}
+                    onClick={() => {
+                      // Clicking a footnote => scroll the MiddlePanel
+                      const target = paragraphRefs.current.find(
+                        el => el && el.getAttribute('data-footnote-id') === footnote.id
+                      );
+                      if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }}
+                  >
+                    <Superscript>[{footnote.id}]</Superscript>{' '}
+                    {currentLang === 'en' ? footnote.en : footnote.ch}
+                  </Footnote>
+                ))}
+            </FootnotesContainer>
+          </RightPanel>
+        </RightWrapper>
+      </ContentWrapper>
     </Wrapper>
   );
 };
@@ -203,51 +191,33 @@ export default Profile;
    STYLED COMPONENTS
 ────────────────────────────────────────────*/
 
+/**
+ *  1) No global scrollbar:
+ *     Wrapper uses height: 100vh and overflow: hidden.
+ *  2) LeftPanel is sticky with no scroll.
+ *  3) MiddlePanel and RightPanel each scroll.
+ *  4) Use min-height: 0 on flex containers to prevent content cutoff.
+ */
 const Wrapper = styled.div`
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  overflow: hidden; /* No global scroll */
 `;
 
 const ProfileTopBar = styled.div`
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  flex-shrink: 0;
   background: #ffffff;
   padding: 16px 24px;
-  box-sizing: border-box;
   border-bottom: 1px solid rgba(66, 63, 103, 0.25);
 `;
 
-const Title = styled.div`
-  font-family: 'Lora', serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 26px;
-  color: #423f67;
-`;
-
-const SubTitle = styled.div`
-  font-family: 'Lora', serif;
-  font-weight: 450;
-  font-size: 16px;
-  line-height: 26px;
-  color: #423f67;
-  margin-top: 4px;
-`;
-
-const Address = styled.div`
-  font-family: 'Lora', serif;
-  font-weight: 450;
-  font-size: 14px;
-  line-height: 22px;
-  color: #423f67;
-  margin-top: 4px;
-`;
-
-const BodyWrapper = styled.div`
+const ContentWrapper = styled.div`
+  flex: 1;
   display: flex;
-  width: 100%;
+  overflow: hidden; /* No global scroll bar */
+  min-height: 0;    /* Key to allow children to scroll */
 `;
 
 const LeftPanel = styled.div`
@@ -255,25 +225,38 @@ const LeftPanel = styled.div`
   position: sticky;
   top: 0;
   height: 100vh;
-  overflow-y: auto;
+  overflow: hidden; /* No scrolling in the left panel */
+  border-right: 1px solid rgba(66, 63, 103, 0.25);
+`;
+
+const RightWrapper = styled.div`
+  flex: 2.75;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  overflow: hidden; /* No scroll bar at this container level */
+  min-height: 0;    /* Allows MiddlePanel & RightPanel to scroll fully */
 `;
 
 const MiddlePanel = styled.div`
   flex: 2;
-  height: 100vh;
   overflow-y: auto;
+  padding: 32px 48px;
+  box-sizing: border-box;
   border-right: 1px solid rgba(66, 63, 103, 0.25);
+  border-left: 1px solid rgba(66, 63, 103, 0.25);
+  min-height: 0; /* crucial for scrolling within a nested flex container */
 `;
 
 const RightPanel = styled.div`
-  flex: 0.75;
-  height: 100vh;
+  flex: 1;
   overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  min-height: 0; /* same reason */
 `;
 
 const Body = styled.div`
-  padding: 32px 48px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 `;
@@ -313,9 +296,7 @@ const ChineseText = styled.div`
 `;
 
 const FootnotesContainer = styled.div`
-  padding: 16px;
-  max-height: 100%;
-  overflow-y: auto;
+  padding: 10px;
 `;
 
 const Footnote = styled.div`
@@ -333,4 +314,30 @@ const Superscript = styled.span`
   font-size: 0.75em;
   color: #0000ff;
   cursor: pointer;
+`;
+
+const Title = styled.div`
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  color: #423f67;
+`;
+
+const SubTitle = styled.div`
+  font-family: 'Lora', serif;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 26px;
+  color: #423f67;
+  margin-top: 4px;
+`;
+
+const Address = styled.div`
+  font-family: 'Lora', serif;
+  font-weight: 450;
+  font-size: 14px;
+  line-height: 22px;
+  color: #423f67;
+  margin-top: 4px;
 `;

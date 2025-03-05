@@ -1,4 +1,84 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import styled from 'styled-components';
+import MarkerComponent from './MarkerComponent';
+
+const Map = ({ data = [], onMarkerClick, isHistoryTrailOpen }) => {
+  const [containerStyle, setContainerStyle] = useState({
+    width: '100%',
+    height: '100%',
+  });
+
+  // Center in Wuxi, Jiangsu
+  const defaultCenter = { lat: 31.4797, lng: 120.3463 };
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+  });
+    
+  // Optional: Adjust height if isHistoryTrailOpen changes
+  useEffect(() => {
+    if (isHistoryTrailOpen) {
+      setContainerStyle(prev => ({ ...prev, height: 'calc(100vh - 100px)' }));
+    } else {
+      setContainerStyle(prev => ({ ...prev, height: '100vh' }));
+    }
+  }, [isHistoryTrailOpen]);
+
+  const createMapOptions = () => ({
+    zoomControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: true,
+    rotateControl: false,
+    fullscreenControl: false,
+    mapId: '312779142772ae11',
+  });
+
+  const [map, setMap] = useState(null);
+
+  const onLoad = useCallback((mapInstance) => {
+    mapInstance.setZoom(9);
+    setMap(mapInstance);
+  }, []);
+
+  const onUnmount = useCallback(() => {
+    setMap(null);
+  }, []);
+
+  return isLoaded && (
+    <WrapperDiv>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={defaultCenter}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+        options={createMapOptions()}
+      >
+        {data.map(({ location, id }) => (
+          <MarkerComponent
+            key={id}
+            location={location}
+            id={id}
+            onMarkerClick={onMarkerClick} /* pass it down */
+          />
+        ))}
+      </GoogleMap>
+    </WrapperDiv>
+  );
+};
+
+const WrapperDiv = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export default React.memo(Map);
+
+
+
+{/* import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { useEffect, useState } from 'react';
 import MarkerComponent from './MarkerComponent';
@@ -84,4 +164,4 @@ const Wrapper = styled.div`
     }
 `
 
-export default React.memo(Map)
+export default React.memo(Map) */}
