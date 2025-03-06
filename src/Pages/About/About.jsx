@@ -8,6 +8,12 @@ import mitPKGIDEASLogo from "../../images/mitPKGIDEASLogo.png";
 const About = () => {
   const [currentLang, setCurrentLang] = useState("en");
 
+  const [openQuestion, setOpenQuestion] = useState(null);
+
+  const toggleQuestion = (index) => {
+    setOpenQuestion(openQuestion === index ? null : index);
+  };
+
   const englishContent = {
     aboutHeader: "ABOUT",
     //subHeader: "What is the China Dispossession Watch?",
@@ -47,6 +53,27 @@ const About = () => {
         chRole: "职位 3",
         photo:
           "https://res.cloudinary.com/dsqszwws8/image/upload/v1741229103/Screenshot_2025-03-05_at_9.44.37_PM_slette.png",
+      },
+    ],
+    faqHeader: "Frequently Asked Questions",
+    faqs: [
+        {
+          question: "What kind of data does China Dispossession Watch collect?",
+          answer: "We collect both qualitative and quantitative data:<br>"
+            + "<strong>Ethnographic accounts:</strong> Stories from evicted residents, their struggles, and acts of resistance.<br>"
+            + "<strong>Satellite imagery & GIS data:</strong> To track land use changes post-expropriation.<br>"
+            + "<strong>Financial analysis:</strong> Following the money behind land transactions and real estate developments.<br>"
+            + "<strong>Legal cases & petitions:</strong> Examining how expropriated citizens fight back within (or outside of) the legal system."
+        },
+      {
+        question: "Who funds China Dispossession Watch?",
+        answer:
+          "Our funding comes from <strong> academic institutions, research grants, and social impact funds </strong>. We are currently supported by the <strong> MIT PKG IDEAS Social Innovation Challenge</strong>, which provides funding for early-stage, high-impact initiatives. <strong>We do not accept funding from governments or corporate entities</strong> that have vested interests in real estate speculation or development."
+      },
+      {
+        question: "Question 3",
+        answer:
+          "Answer 3",
       },
     ],
   };
@@ -92,6 +119,24 @@ const About = () => {
           "https://res.cloudinary.com/dsqszwws8/image/upload/v1741229103/Screenshot_2025-03-05_at_9.44.37_PM_slette.png",
       },
     ],
+    faqHeader: "常见问题",
+    faqs: [
+      {
+        question: "什么是中国征地拆迁观察？",
+        answer:
+          "中国征地拆迁观察是一个数字平台，将基层反拆迁抗争的民族志记录与土地金融的实证分析相结合。",
+      },
+      {
+        question: "我如何参与该平台？",
+        answer:
+          "我们欢迎研究人员、活动家和社区成员的贡献。请联系我们，共同记录和分析拆迁现象。",
+      },
+      {
+        question: "该项目由谁支持？",
+        answer:
+          "我们的工作得到了麻省理工学院建筑与规划学院、麻省理工学院房地产中心以及麻省理工学院 IDEAS 社会创新挑战赛的支持。",
+      },
+    ],
   };
 
   const content = currentLang === "en" ? englishContent : chineseContent;
@@ -129,9 +174,26 @@ const About = () => {
           </SectionBox>
         </Section>
 
+        {/*} FAQ Section */}
+        <Section>
+          <Header>
+            <Lora>{content.faqHeader}</Lora>
+          </Header>
+          <FAQContainer>
+            {content.faqs.map((faq, index) => (
+              <FAQItem key={index}>
+                <Question onClick={() => toggleQuestion(index)} isOpen={openQuestion === index}>
+                  {faq.question}
+                  <Arrow isOpen={openQuestion === index}>▼</Arrow>
+                </Question>
+                <Answer isOpen={openQuestion === index} dangerouslySetInnerHTML={{ __html: faq.answer }} />
+              </FAQItem>
+            ))}
+          </FAQContainer>
+        </Section>
+
         {/* SUPPORTED BY / PARTNERS Section */}
         <Section>
-          <SectionBox>
             <Header>
               <Lora>{content.partnersHeader}</Lora>
             </Header>
@@ -149,12 +211,10 @@ const About = () => {
                 alt="MIT IDEAS Social Innovation Challenge"
               />
             </Partners>
-          </SectionBox>
         </Section>
 
         {/* TEAM Section */}
         <Section>
-          <SectionBox>
             <Header>
               <Lora>{content.teamHeader}</Lora>
             </Header>
@@ -179,7 +239,6 @@ const About = () => {
                 </TeamMember>
               ))}
             </TeamGrid>
-          </SectionBox>
         </Section>
       </ContentWrapper>
     </Wrapper>
@@ -191,7 +250,6 @@ const EnglishText = styled.div`
   font-family: "Lora", serif;
   font-size: 16px;
   color: #000;
-  line-height: 26px;
   margin-top: 16px;
 `;
 
@@ -199,7 +257,6 @@ const ChineseText = styled.div`
   font-family: "Noto Serif";
   font-size: 16px;
   color: #000;
-  line-height: 26px;
   margin-top: 16px;
 `;
 
@@ -213,7 +270,7 @@ const SubHeader = styled.div`
   font-family: "Lora", serif;
   font-style: normal;
   font-size: 16px;
-  line-height: 26px;
+  //line-height: 26px;
   font-weight: 500;
   color: #423f67;
   margin: 24px 0;
@@ -223,7 +280,7 @@ const Header = styled.div`
   font-style: normal;
   font-weight: 900;
   font-size: 16px;
-  line-height: 26px;
+  //line-height: 26px;
   margin-bottom: 16px;
   gap: 6px;
   display: flex;
@@ -243,9 +300,9 @@ const Section = styled.section`
 /* The invisible box for each section.
    Adjust min-height as needed so that content doesn't shift between language toggles. */
 const SectionBox = styled.div`
-     min-height: 210px;
+     min-height: 180px;
   /* Optionally add padding if needed: padding: 20px; */
-     padding-bottom: 24px;
+     padding-bottom: 16px;
      border-bottom: 1px solid #ccc;
 `;
 
@@ -259,8 +316,8 @@ const Wrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  margin-top: 33px;
-  padding: 32px;
+  margin-top: 0px;
+  padding: 0px;
   width: 900px;
   display: flex;
   flex-direction: column;
@@ -277,6 +334,8 @@ const Partners = styled.div`
   display: flex;
   align-items: center;
   gap: 50px;
+  padding-bottom: 24px; /* Adds space above the bottom border */
+  border-bottom: 1px solid #ccc;
 `;
 
 const PartnerLogo = styled.img`
@@ -291,14 +350,14 @@ const TeamGrid = styled.div`
 `;
 
 const TeamMember = styled.div`
-  flex: 1 1 150px;
-  max-width: 200px;
+  flex: 1 1 100px;
+  max-width: 150px;
   text-align: center;
 `;
 
 const MemberPhoto = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
 `;
@@ -313,7 +372,7 @@ const MemberName = styled.div`
 const MemberRole = styled.div`
   font-family: "Lora", serif;
   font-size: 14px;
-  color: #1e1e1e;
+  color: #423f67;
 `;
 
 const ToggleContainer = styled.div`
@@ -332,6 +391,47 @@ const ToggleButton = styled.button`
   &:not(:last-child) {
     margin-right: 8px;
   }
+`;
+
+const FAQContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 42px;
+  border-bottom: 1px solid #ccc;
+`;
+
+const FAQItem = styled.div`
+  border-bottom: 1px solid #ccc;
+`;
+
+const Question = styled.div`
+  font-family: "Lora", serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  color: #423f67;
+  color: ${(props) => (props.isOpen ? "#423f67" : "#1e1e1e")};
+  transition: color 0.2s ease;
+`;
+
+const Answer = styled.div`
+  //font-family: "Lora", serif;
+  font-size: 14px;
+  color: #555;
+  max-height: ${(props) => (props.isOpen ? "100px" : "0")};
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  padding: ${(props) => (props.isOpen ? "8px 0" : "0")};
+`;
+
+const Arrow = styled.span`
+  transition: transform 0.2s ease;
+  transform: ${(props) => (props.isOpen ? "rotate(180deg)" : "rotate(0deg)")};
 `;
 
 export default About;
