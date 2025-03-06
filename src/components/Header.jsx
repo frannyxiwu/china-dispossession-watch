@@ -23,10 +23,10 @@ const Header = () => {
                         isActive ? activeStyle : undefined
                     }
                 >
-                    <FlexDiv>
+                    {/* <FlexDiv>
                         <EngTitle>Home</EngTitle> 
                         <ChTitle>主页</ChTitle>
-                    </FlexDiv>
+                    </FlexDiv> */}
                 </NavLink>
                 <NavLink 
                     to={'/directory'}
