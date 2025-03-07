@@ -17,6 +17,7 @@ const Profile = () => {
   const footnoteRefs = useRef({});
 
   useEffect(() => {
+    // Find the profile by ID
     const foundProfile = data.find(item => item.id === id);
     if (foundProfile) {
       setProfile(foundProfile);
@@ -25,7 +26,7 @@ const Profile = () => {
     }
   }, [id, navigate]);
 
-  // Intersection Observer: highlight footnote in right panel
+  // Intersection Observer for footnotes
   useEffect(() => {
     if (!paragraphRefs.current) return;
     const observer = new IntersectionObserver(
@@ -61,7 +62,7 @@ const Profile = () => {
   const englishParagraphs = profile.description.filter(item => item.type === 'en');
   const chineseParagraphs = profile.description.filter(item => item.type === 'ch');
 
-  // Clicking on a footnote marker scrolls the right panel
+  // Footnote link component
   const FootnoteLink = ({ footnoteId }) => {
     const handleClick = () => {
       if (footnoteRefs.current[footnoteId]) {
@@ -74,7 +75,7 @@ const Profile = () => {
     return <Superscript onClick={handleClick}>[{footnoteId}]</Superscript>;
   };
 
-  // Recursively extract a plain string from a value.
+  // Recursively extract a plain string
   const extractText = (val) => {
     if (typeof val === 'string') return val;
     if (val && typeof val === 'object') {
@@ -85,10 +86,9 @@ const Profile = () => {
     return String(val);
   };
 
-  // Render text with footnotes. Split the string on [n] markers.
+  // Render paragraphs with footnotes
   const renderTextWithFootnotes = (text) => {
     const textString = extractText(text);
-    // Split and filter out any empty parts
     const parts = textString.split(/(\[\d+\])/g).filter(part => part !== '');
     return parts.map((part, index) => {
       if (/^\[\d+\]$/.test(part)) {
@@ -102,19 +102,36 @@ const Profile = () => {
 
   return (
     <Wrapper>
+      {/* TOP BAR: left = name/address, right = tags */}
       <ProfileTopBar>
-        {currentLang === 'en' ? (
-          <>
-            {profile.name && <Title>{profile.name}</Title>}
-            {profile.hint && <SubTitle>“{profile.hint}”</SubTitle>}
-            {profile.address && <Address>{profile.address}</Address>}
-          </>
-        ) : (
-          <>
-            {profile.chName && <Title>{profile.chName}</Title>}
-            {profile.chHint && <SubTitle>“{profile.chHint}”</SubTitle>}
-            {profile.chineseAddress && <Address>{profile.chineseAddress}</Address>}
-          </>
+        <LeftSection>
+          {currentLang === 'en' ? (
+            <>
+              {profile.name && <Title>{profile.name}</Title>}
+              {profile.hint && <SubTitle>“{profile.hint}”</SubTitle>}
+              {profile.address && <Address>{profile.address}</Address>}
+            </>
+          ) : (
+            <>
+              {profile.chName && <Title>{profile.chName}</Title>}
+              {profile.chHint && <SubTitle>“{profile.chHint}”</SubTitle>}
+              {profile.chineseAddress && <Address>{profile.chineseAddress}</Address>}
+            </>
+          )}
+        </LeftSection>
+
+        {/* If the profile has tags, display them on the right. */}
+        {profile.tags && (
+          <RightSection>
+            <TagsContainer>
+              {profile.tags.map((tag, index) => (
+                <Tag key={index}>
+                  {/* Toggle between en and ch */}
+                  {currentLang === 'en' ? tag.en : tag.ch}
+                </Tag>
+              ))}
+            </TagsContainer>
+          </RightSection>
         )}
       </ProfileTopBar>
 
@@ -122,6 +139,7 @@ const Profile = () => {
         <LeftPanel>
           <Island data={profile} currentLang={currentLang} />
         </LeftPanel>
+
         <RightWrapper>
           <MiddlePanel>
             <Body>
@@ -139,6 +157,7 @@ const Profile = () => {
                   中文
                 </ToggleButton>
               </ToggleContainer>
+
               {currentLang === 'en'
                 ? englishParagraphs.map((item, index) => (
                     <Paragraph
@@ -160,7 +179,9 @@ const Profile = () => {
                   ))}
             </Body>
           </MiddlePanel>
+
           <RightPanel>
+            {/* Footnotes go here */}
             <FootnotesContainer>
               {profile.footnotes &&
                 profile.footnotes.map(footnote => (
@@ -203,10 +224,64 @@ const Wrapper = styled.div`
 `;
 
 const ProfileTopBar = styled.div`
-  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between; /* ensures left side + right side are separated */
+  align-items: flex-start;        /* or center if you prefer */
   background: #ffffff;
   padding: 16px 24px;
   border-bottom: 1px solid rgba(66, 63, 103, 0.25);
+`;
+
+/* LEFT side container */
+const LeftSection = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+/* RIGHT side container: margin-left is not needed if we use justify-content: space-between */
+const RightSection = styled.div`
+  display: flex;
+  align-items: flex-start; /* or center */
+`;
+
+const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
+const Tag = styled.span`
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 0px;
+  font-size: 14px;
+`;
+
+const Title = styled.div`
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  color: #423f67;
+`;
+
+const SubTitle = styled.div`
+  font-family: 'Lora', serif;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 26px;
+  color: #423f67;
+  margin-top: 4px;
+`;
+
+const Address = styled.div`
+  font-family: 'Lora', serif;
+  font-weight: 450;
+  font-size: 14px;
+  line-height: 22px;
+  color: #423f67;
+  margin-top: 4px;
 `;
 
 const ContentWrapper = styled.div`
@@ -310,30 +385,4 @@ const Superscript = styled.span`
   font-size: 0.75em;
   color: #0000ff;
   cursor: pointer;
-`;
-
-const Title = styled.div`
-  font-family: 'Lora', serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 26px;
-  color: #423f67;
-`;
-
-const SubTitle = styled.div`
-  font-family: 'Lora', serif;
-  font-weight: 450;
-  font-size: 16px;
-  line-height: 26px;
-  color: #423f67;
-  margin-top: 4px;
-`;
-
-const Address = styled.div`
-  font-family: 'Lora', serif;
-  font-weight: 450;
-  font-size: 14px;
-  line-height: 22px;
-  color: #423f67;
-  margin-top: 4px;
 `;
