@@ -4,6 +4,10 @@ import MassHumanitiesLogo from "../../images/massHumanitiesLogo.png";
 import mitCRELogo from "../../images/mitCRELogo.png";
 import mitSAPLogo from "../../images/mitSAPLogo.png";
 import mitPKGIDEASLogo from "../../images/mitPKGIDEASLogo.png";
+// src/Pages/About/About.jsx
+import data from '../../data/data';
+
+
 
 const About = () => {
   const [currentLang, setCurrentLang] = useState("en");

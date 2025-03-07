@@ -13,7 +13,7 @@ const Header = () => {
     
     return (
         <Wrapper>
-            <NavLink to={'/'}>
+            <NavLink to={'/directory'}>
                 <EngTitle>China Dispossession Watch <b>中国征地拆迁观察</b></EngTitle>
             </NavLink>
             <NavigationLinkContainer>

@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Island from './Components/Island';
-import data from '../../yu-xiulan';
+import data from '../../data/data';
 
 const Profile = () => {
   const { id } = useParams();
-  const [profile, setProfile] = useState('');
+  const [profile, setProfile] = useState(null);
   const [currentLang, setCurrentLang] = useState('en');
   const [currentFootnoteId, setCurrentFootnoteId] = useState(null);
   const navigate = useNavigate();
@@ -39,14 +39,10 @@ const Profile = () => {
       },
       { threshold: 0.5 }
     );
-
     paragraphRefs.current.forEach(el => {
       if (el) observer.observe(el);
     });
-
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, [profile, currentLang]);
 
   // Scroll RightPanel to the matching footnote
@@ -65,7 +61,7 @@ const Profile = () => {
   const englishParagraphs = profile.description.filter(item => item.type === 'en');
   const chineseParagraphs = profile.description.filter(item => item.type === 'ch');
 
-  // Clicking [1], [2], etc. => scroll the RightPanel
+  // Clicking on a footnote marker scrolls the right panel
   const FootnoteLink = ({ footnoteId }) => {
     const handleClick = () => {
       if (footnoteRefs.current[footnoteId]) {
@@ -78,14 +74,27 @@ const Profile = () => {
     return <Superscript onClick={handleClick}>[{footnoteId}]</Superscript>;
   };
 
-  // Convert "[1]" => <FootnoteLink footnoteId="1" />
+  // Recursively extract a plain string from a value.
+  const extractText = (val) => {
+    if (typeof val === 'string') return val;
+    if (val && typeof val === 'object') {
+      if (typeof val.default === 'string') return val.default;
+      if (val.default !== undefined) return extractText(val.default);
+      return JSON.stringify(val);
+    }
+    return String(val);
+  };
+
+  // Render text with footnotes. Split the string on [n] markers.
   const renderTextWithFootnotes = (text) => {
-    const parts = text.split(/(\[\d+\])/g);
+    const textString = extractText(text);
+    // Split and filter out any empty parts
+    const parts = textString.split(/(\[\d+\])/g).filter(part => part !== '');
     return parts.map((part, index) => {
-      const match = part.match(/^\[(\d+)\]$/);
-      if (match) {
-        const id = match[1];
-        return <FootnoteLink key={index} footnoteId={id} />;
+      if (/^\[\d+\]$/.test(part)) {
+        const match = part.match(/^\[(\d+)\]$/);
+        const footId = match[1];
+        return <FootnoteLink key={index} footnoteId={footId} />;
       }
       return part;
     });
@@ -110,12 +119,9 @@ const Profile = () => {
       </ProfileTopBar>
 
       <ContentWrapper>
-        {/* Sticky Left Panel with no scrolling */}
         <LeftPanel>
           <Island data={profile} currentLang={currentLang} />
         </LeftPanel>
-
-        {/* Middle + Right side by side, each scrollable */}
         <RightWrapper>
           <MiddlePanel>
             <Body>
@@ -133,7 +139,6 @@ const Profile = () => {
                   中文
                 </ToggleButton>
               </ToggleContainer>
-
               {currentLang === 'en'
                 ? englishParagraphs.map((item, index) => (
                     <Paragraph
@@ -155,7 +160,6 @@ const Profile = () => {
                   ))}
             </Body>
           </MiddlePanel>
-
           <RightPanel>
             <FootnotesContainer>
               {profile.footnotes &&
@@ -164,7 +168,6 @@ const Profile = () => {
                     key={footnote.id}
                     ref={el => (footnoteRefs.current[footnote.id] = el)}
                     onClick={() => {
-                      // Clicking a footnote => scroll the MiddlePanel
                       const target = paragraphRefs.current.find(
                         el => el && el.getAttribute('data-footnote-id') === footnote.id
                       );
@@ -191,19 +194,12 @@ export default Profile;
    STYLED COMPONENTS
 ────────────────────────────────────────────*/
 
-/**
- *  1) No global scrollbar:
- *     Wrapper uses height: 100vh and overflow: hidden.
- *  2) LeftPanel is sticky with no scroll.
- *  3) MiddlePanel and RightPanel each scroll.
- *  4) Use min-height: 0 on flex containers to prevent content cutoff.
- */
 const Wrapper = styled.div`
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* No global scroll */
+  overflow: hidden;
 `;
 
 const ProfileTopBar = styled.div`
@@ -216,8 +212,8 @@ const ProfileTopBar = styled.div`
 const ContentWrapper = styled.div`
   flex: 1;
   display: flex;
-  overflow: hidden; /* No global scroll bar */
-  min-height: 0;    /* Key to allow children to scroll */
+  overflow: hidden;
+  min-height: 0;
 `;
 
 const LeftPanel = styled.div`
@@ -225,7 +221,7 @@ const LeftPanel = styled.div`
   position: sticky;
   top: 0;
   height: 100vh;
-  overflow: hidden; /* No scrolling in the left panel */
+  overflow: hidden;
   border-right: 1px solid rgba(66, 63, 103, 0.25);
 `;
 
@@ -234,8 +230,8 @@ const RightWrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
-  overflow: hidden; /* No scroll bar at this container level */
-  min-height: 0;    /* Allows MiddlePanel & RightPanel to scroll fully */
+  overflow: hidden;
+  min-height: 0;
 `;
 
 const MiddlePanel = styled.div`
@@ -245,7 +241,7 @@ const MiddlePanel = styled.div`
   box-sizing: border-box;
   border-right: 1px solid rgba(66, 63, 103, 0.25);
   border-left: 1px solid rgba(66, 63, 103, 0.25);
-  min-height: 0; /* crucial for scrolling within a nested flex container */
+  min-height: 0;
 `;
 
 const RightPanel = styled.div`
@@ -253,7 +249,7 @@ const RightPanel = styled.div`
   overflow-y: auto;
   padding: 10px;
   box-sizing: border-box;
-  min-height: 0; /* same reason */
+  min-height: 0;
 `;
 
 const Body = styled.div`
