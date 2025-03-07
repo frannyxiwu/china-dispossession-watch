@@ -10,9 +10,8 @@ import Directory from './Pages/Directory/Directory';
 import About from './Pages/About/About';
 import Header from './components/Header';
 import NotFound from './Pages/404/NotFound';
-
-import data from './yu-xiulan';
-//import data from './bao-hailan';
+// src/App.js
+import data from './data/data';
 import Profile from './Pages/Profile/Profile';
 import { RecoilRoot } from 'recoil';
 

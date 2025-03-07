@@ -1,4 +1,4 @@
-import { parseParagraphs } from './utils/parseParagraphs';
+import { parseParagraphs } from '../../../utils/parseParagraphs';
 
 const englishText = `
 My name is Yu Xiulan. I owned three properties in Binhu District, Wuxi City, Jiangsu Province: my original home at No. 45 in Yong'an Village of Huazhuang Subdistrict, a newly constructed villa (temporarily numbered 45-1), and a productive pig farm measuring 343.7 square meters. I also held four mu (2,667 square meters) of contracted farmland, with half explicitly guaranteed under a "thirty-year unchanged" [1] contract. To this day, I still possess all the relevant contracts, property deeds, and keys—none of which I ever surrendered to the demolition authorities.
@@ -159,29 +159,22 @@ const chineseText = `
 const parsedEnglish = parseParagraphs(englishText, 'en');
 const parsedChinese = parseParagraphs(chineseText, 'ch');
 
-// Manually add footnoteId to some paragraphs for testing
-if (parsedEnglish.length > 0) {
-  parsedEnglish[0].footnoteId = "1";
-}
-if (parsedEnglish.length > 1) {
-  parsedEnglish[1].footnoteId = "2";
-}
-if (parsedEnglish.length > 2) {
-  parsedEnglish[2].footnoteId = "3";
-}
+// Temporary logging to verify the output structure:
+console.log("Parsed English paragraphs:", parsedEnglish);
+console.log("Parsed Chinese paragraphs:", parsedChinese);
 
-if (parsedChinese.length > 0) {
-  parsedChinese[0].footnoteId = "1";
-}
-if (parsedChinese.length > 1) {
-  parsedChinese[1].footnoteId = "2";
-}
-if (parsedChinese.length > 2) {
-  parsedChinese[2].footnoteId = "3";
-}
+// Optionally, add footnote IDs to a few paragraphs for testing:
+if (parsedEnglish.length > 0) parsedEnglish[0].footnoteId = "1";
+if (parsedEnglish.length > 1) parsedEnglish[1].footnoteId = "2";
+if (parsedEnglish.length > 2) parsedEnglish[2].footnoteId = "3";
 
-const data = [
+if (parsedChinese.length > 0) parsedChinese[0].footnoteId = "1";
+if (parsedChinese.length > 1) parsedChinese[1].footnoteId = "2";
+if (parsedChinese.length > 2) parsedChinese[2].footnoteId = "3";
+
+export const yuXiulanData = 
   {
+    id: "yu-xiulan",
     name: "Yu Xiulan",
     chName: '郁秀兰',
     address: "Yong'an Village No.45, Huazhuang Subdistrict, Binhu District, Wuxi, Jiangsu, China",
@@ -190,8 +183,7 @@ const data = [
     cover:
       "https://res.cloudinary.com/pang-dev/image/upload/v1677709248/CCLT/Jianhua_Tang_garden_k2npqh.jpg",
 //    hint: "",
-    profileId: "a",
-    id: "yu-xiulan",
+//    profileId: "a",
 //   sign: true,
 //    audio: [
 //      {
@@ -215,12 +207,11 @@ const data = [
         chCaption: "集体土地使用证，2001年6月13日",
       }
     ],
-    // Instead of manually typing paragraph by paragraph:
-    // We parse the multiline strings into paragraph objects
-    description: [
-      ...parseParagraphs(englishText, 'en'),
-      ...parseParagraphs(chineseText, 'ch'),
-    ],
+  // Combine the paragraphs into one description array
+  description: [
+    ...parsedEnglish,
+    ...parsedChinese,
+  ],
     // New footnotes array with a few random footnotes for testing.
     footnotes: [
       { id: "1", en: "The 'thirty-year unchanged' land contract policy, initiated through the 1984 'Document No. 1' (中央一号文件), represented a cornerstone of China's rural reforms. This policy guaranteed farmers' land use rights for three decades, marking a significant departure from the commune system. ", 
@@ -246,7 +237,5 @@ const data = [
   //      link: "https://drive.google.com/file/d/1GD6aOmc_XZl31nHf9As8Gu5Cukf7jm2B/view",
   //    },
   //  ],
-  },
-];
+  };
 
-export default data;

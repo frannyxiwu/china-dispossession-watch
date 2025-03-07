@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Map from '../Map/Map';  // your updated Map component
+import { Link } from 'react-router-dom';
+import Map from '../Map/Map';
 import Media from 'react-media';
+import { yuXiulanData } from '../../data/data/profiles/yu-xiulan';
+import { baoHailanData } from '../../data/data/profiles/bao-hailan';
 
 const Directory = () => {
-  // Example: single or multiple profiles
-  const [profiles] = useState([
-    {
-      id: 'yu-xiulan',
-      title: 'Yu Xiulan',
-      location: { lat: 31.4797, lng: 120.3463 },
-      description: 'Some details about Yu Xiulan...',
-    },
-    // add more if needed
-  ]);
+  // Set profiles state using the imported data objects.
+  const [profiles] = useState([yuXiulanData, baoHailanData]);
 
-  // Track which profile is selected (when user clicks a marker)
   const [selectedProfile, setSelectedProfile] = useState(null);
 
-  // Called when a marker is clicked in Map
   const handleMarkerClick = (profileId) => {
-    // Find the profile in your array
     const foundProfile = profiles.find(p => p.id === profileId);
     setSelectedProfile(foundProfile);
   };
@@ -31,21 +23,22 @@ const Directory = () => {
         {matches => (
           <>
             <MapContainer>
-              {/* Pass the profiles array and the marker-click callback */}
               <Map 
                 data={profiles} 
                 onMarkerClick={handleMarkerClick}
               />
             </MapContainer>
-
             <SidePanel>
               {selectedProfile ? (
-                <>
-                  <h2>{selectedProfile.title}</h2>
-                  <p>{selectedProfile.description}</p>
-                </>
+                <ProfileCard>
+                  <h2>{selectedProfile.name}</h2>
+                  <p>{selectedProfile.description[0].default}</p>
+                  <ReadMoreLink to={`/directory/${selectedProfile.id}`}>
+                    Read More &rarr;
+                  </ReadMoreLink>
+                </ProfileCard>
               ) : (
-                <p>Click a marker to see details here.</p>
+                <InfoMessage>Click a marker to see details here.</InfoMessage>
               )}
             </SidePanel>
           </>
@@ -57,27 +50,61 @@ const Directory = () => {
 
 export default Directory;
 
-/*────────────────────────────────────────────
-   STYLED COMPONENTS
-────────────────────────────────────────────*/
-
 const Wrapper = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* So we don't get a global scrollbar */
+  overflow: hidden;
 `;
 
 const MapContainer = styled.div`
-  flex: 3; /* Make the map take ~3 parts of the width */
+  flex: 3.5;
 `;
 
 const SidePanel = styled.div`
-  flex: 1; /* The panel takes 1 part of the width */
+  flex: 2;
   border-left: 1px solid #ccc;
   padding: 16px;
-  overflow-y: auto; /* So the panel can scroll if content is tall */
+  overflow-y: auto;
+  background: #ffffff;
 `;
+
+const ProfileCard = styled.div`
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    margin-top: 0;
+    color: #333;
+  }
+  p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1;
+  }
+`;
+
+const ReadMoreLink = styled(Link)`
+  display: inline-block;
+  margin-top: 12px;
+  font-family: 'Lora', serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #423f67;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const InfoMessage = styled.p`
+  font-size: 1em;
+  color: #888;
+`;
+
 
 
 

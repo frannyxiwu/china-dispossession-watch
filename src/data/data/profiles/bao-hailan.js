@@ -1,4 +1,4 @@
-import { parseParagraphs } from './utils/parseParagraphs';
+import { parseParagraphs } from '../../../utils/parseParagraphs';
 
 const englishText = `
 My name is Bao Hailan, and I come from Baojie Village in Turtle Head Isle, Binhu District, Wuxi City, Jiangsu Province. I represent 1,256 villagers from three neighboring villages - Baojie, Chongshan, and Dushan - who have been displaced for over 17 years.
@@ -80,13 +80,12 @@ if (parsedChinese.length > 2) {
   parsedChinese[2].footnoteId = "3";
 }
 
-const data = [
-  {
+export const baoHailanData = {
     name: "Bao Hailan",
     chName: '包海兰',
     address: "Yong'an Village No.45, Huazhuang Subdistrict, Binhu District, Wuxi, Jiangsu, China",
     chineseAddress: "江苏省无锡市滨湖区华庄街道永安村45号",
-    location: { lat: 31.479705841822554, lng: 120.3462864975347 },
+    location: { lat: 32, lng: 122 },
     cover:
       "https://res.cloudinary.com/pang-dev/image/upload/v1677709248/CCLT/Jianhua_Tang_garden_k2npqh.jpg",
 //    hint: "",
@@ -152,7 +151,4 @@ const data = [
     //    link: "https://drive.google.com/file/d/1GD6aOmc_XZl31nHf9As8Gu5Cukf7jm2B/view",
     //  },
     //],
-  },
-];
-
-export default data;
+  };
