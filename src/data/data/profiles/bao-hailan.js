@@ -3,13 +3,13 @@ import { parseParagraphs } from '../../../utils/parseParagraphs';
 const englishText = `
 My name is Bao Hailan, and I come from Baojie Village in Turtle Head Isle, Binhu District, Wuxi City, Jiangsu Province. I represent 1,256 villagers from three neighboring villages - Baojie, Chongshan, and Dushan - who have been displaced for over 17 years.
 
-It all began innocuously enough. In 2007, the local government announced the "6699 Action ," touting it as an ecological restoration project for Taihu Lake. But behind this green facade lurked a sinister plan orchestrated by Wuxi's then Municipal Party Secretary, Yang Weize . His true intent was to seize valuable land from the three Turtle Head Isle villages, and would soon uproot our lives in the most brutal manner.
+It all began innocuously enough. In 2007, the local government announced the "6699 Action" [1], touting it as an ecological restoration project for Taihu Lake. But behind this green facade lurked a sinister plan orchestrated by Wuxi's then Municipal Party Secretary, Yang Weize [2]. His true intent was to seize valuable land from the three Turtle Head Isle villages, and would soon uproot our lives in the most brutal manner.
 
 On December 10, 2007, Yang mobilized Wuxi’s Armed Police Force, sending several buses charging into our villages under his direct command. Villagers who resisted entry to their homes for “assessment” were arrested and escorted to the police station. In pursuit of their own selfish gains, the authorities deployed every tool at their disposal to crush us: all were taken to the police station, some were detained, handcuffed with shackles, hung up and beaten. We have substantial evidence, including video recordings, documenting these brutal methods, but the torture inflicted can only be fully described by those who experienced it firsthand. More than 60 villagers were detained, and around 20 were sent to a detention center, where they were coerced into signing unfair resettlement agreements. The elders among us, who had survived the harrowing Japanese invasion, the Kuomintang's white terror, and the Liberation War, said they had never witnessed such cruelty from a government against its own people.
 
-During this massive show of force, 4,974.9 mu (822 acres) of our three villages’ collective land and nearly 20,000 square meters of other structures were seized without so much as a nod to legal procedures. Our homes, our fields, our very way of life - all absorbed into the newly expanded Turtle Head Isle Scenic Area. This 5A-level scenic park  turned into a lucrative “wallet” for the local government, its coffers swelled with ticket sales, parking fees, and other revenues. Dushan Village was repurposed into a Cherry Blossom Valley  whose entrance was adorned with a ¥105 ($15) ticket booth. Chongshan Village's lush farmland disappeared under a sea of asphalt; its land converted into parking lots that generate tens of millions in annual revenue. And Baojie? Our fate was the most insulting of all. Seeking to ingratiate himself with China’s central government, particularly with the powerful Zhou Yongkang , Yang Weize planned to raise 26 luxury villas where our modest farmhouses once stood to gift to Central Committee members. When this scheme fell through, our village was unceremoniously paved over, becoming nothing more than a road circling the mountain and more parking spaces to disperse the overwhelming influx of visitors. Every income stream lined the pockets of Turtle Head Isle authorities, with not a penny going to the displaced villagers.
+During this massive show of force, 4,974.9 mu (822 acres) of our three villages’ collective land and nearly 20,000 square meters of other structures were seized without so much as a nod to legal procedures. Our homes, our fields, our very way of life - all absorbed into the newly expanded Turtle Head Isle Scenic Area. This 5A-level scenic park [3] turned into a lucrative “wallet” for the local government, its coffers swelled with ticket sales, parking fees, and other revenues. Dushan Village was repurposed into a Cherry Blossom Valley [4] whose entrance was adorned with a ¥105 ($15) ticket booth. Chongshan Village's lush farmland disappeared under a sea of asphalt; its land converted into parking lots that generate tens of millions in annual revenue. And Baojie? Our fate was the most insulting of all. Seeking to ingratiate himself with China’s central government, particularly with the powerful Zhou Yongkang [5], Yang Weize planned to raise 26 luxury villas where our modest farmhouses once stood to gift to Central Committee members. When this scheme fell through, our village was unceremoniously paved over, becoming nothing more than a road circling the mountain and more parking spaces to disperse the overwhelming influx of visitors. Every income stream lined the pockets of Turtle Head Isle authorities, with not a penny going to the displaced villagers.
 
-Our two-thousand-year-old villages and the collective assets of our ancestors were completely confiscated. Villagers received a mere pittance of just over ¥300 per square meter for land that had sustained our families for generations. The resettlement housing provided was not only substandard but dangerous. These buildings are designed with one staircase shared by four households on each floor, making them among the worst in Wuxi City and a far cry from the spacious homes and even villas we had enjoyed. Compared with the rest of rural Wuxi, we had been quite well-off and led prosperous lives since the liberation. Even villagers without formal jobs could live comfortably by running small shops or selling goods near the 5A-level park. Now, we are trapped in resettlement housing, landless and impoverished, with nearly 200 villagers relying on Wuxi City’s minimum subsistence allowance  to survive.
+Our two-thousand-year-old villages and the collective assets of our ancestors were completely confiscated. Villagers received a mere pittance of just over ¥300 per square meter for land that had sustained our families for generations. The resettlement housing provided was not only substandard but dangerous. These buildings are designed with one staircase shared by four households on each floor, making them among the worst in Wuxi City and a far cry from the spacious homes and even villas we had enjoyed. Compared with the rest of rural Wuxi, we had been quite well-off and led prosperous lives since the liberation. Even villagers without formal jobs could live comfortably by running small shops or selling goods near the 5A-level park. Now, we are trapped in resettlement housing, landless and impoverished, with nearly 200 villagers relying on Wuxi City’s minimum subsistence allowance [6] to survive.
 
 By 2008, our three villages had a population of around 1,700. Our review of many government documents revealed that, according to the Provincial Development and Reform Commission’s regulations, such demolitions should have been approved by the provincial government. Yet we were expelled without any due process. Faced with this injustice, more than a thousand of us took to the streets to defend our rights, filing lawsuits that climbed all the way to the Supreme People's Court of China. In 2016, the Supreme Court ruled that the Jiangsu Provincial High Court should hear our case. After the Provincial High Court filed the case, they did not proceed with a hearing and instead transferred it to the Wuxi Intermediate Court, where it languished, unheard and unresolved.
 
@@ -31,13 +31,13 @@ As I stand now, looking out over the transformed landscape of Turtle Head Isle, 
 const chineseText = `
 我叫包海兰，我是江苏省无锡市滨湖区鼋头渚宝界村的村民。我代表着来自宝街、充山、犊山三个村的1,256名村民，我们已经被迫流离失所超过17年了。
 
-这一切起初看起来很平常。2007年，地方政府宣布了“6699行动”，宣传它是一个太湖生态修复项目。但这绿色的外衣掩盖着一个邪恶的计划，正是无锡当时的市委书记杨卫泽主导的。他的真正意图是从我们三村居民手中夺走宝贵的土地，并很快以最残忍的方式摧毁了我们的生活。
+这一切起初看起来很平常。2007年，地方政府宣布了“6699行动” [1]，宣传它是一个太湖生态修复项目。但这绿色的外衣掩盖着一个邪恶的计划，正是无锡当时的市委书记杨卫泽 [2] 主导的。他的真正意图是从我们三村居民手中夺走宝贵的土地，并很快以最残忍的方式摧毁了我们的生活。
 
 2007年12月10日，杨卫泽调动无锡武警部队，亲自指挥，几辆大巴驶进我们的村庄进行冲击。那些反抗进入家里“评估”的村民被逮捕并押送到警察局。为了追求他们的利益，政府对我们老百姓什么手段都用起来了：所有被带到警察局的人，有拘留的，有扁担拷的，有吊起来打的。我们有大量证据，包括录像，记录下了这些暴力行为，但这些折磨只有他们亲身经历的人才能完全描述。超过60名村民被拘留，其中20多人被关在看守所，在那里他们被胁迫签署不公平的安置协议。我们村里的老年人中，许多人曾经历过日本侵略、国民党白色恐怖和解放战争，他们说从未见过政府对自己百姓如此残暴。
 
-在这场大规模的暴力下，我们三村集体的4,974.9亩（822英亩）土地以及近2万平方米的其他建筑物被毫无法律程序地强行征收。我们的家园、田地，甚至我们代代传承的生计——都被吞并进了扩展后的鼋头渚风景区。这个5A级的风景区变成了地方政府的摇钱树，票价、停车费等收入源源不断地进入了政府的腰包。犊山村被改建成了樱花谷，入口处还设了一个¥105（约合15美元）的票亭。充山村的肥沃农田被厚厚的沥青覆盖用作停车场，年收入高达数千万。而宝街村呢？我们的命运更为可悲。为了讨好中央政府，尤其是当时的中央常委周永康，杨卫泽计划在我们这些简朴的农舍上建26栋豪华别墅，送给中央委员。虽然这个计划未能成功，我们的村庄被推平改建成了套山马路式公园和更多的停车场，以疏散巨大的客流涌入。收入全部归鼋头渚公园，一分钱也没有流向被强拆的村民。
+在这场大规模的暴力下，我们三村集体的4,974.9亩（822英亩）土地以及近2万平方米的其他建筑物被毫无法律程序地强行征收。我们的家园、田地，甚至我们代代传承的生计——都被吞并进了扩展后的鼋头渚风景区。这个5A级风景区 [3] 变成了地方政府的摇钱树，票价、停车费等收入源源不断地进入了政府的腰包。犊山村被改建成了樱花谷 [4]，入口处还设了一个¥105（约合15美元）的票亭。充山村的肥沃农田被厚厚的沥青覆盖用作停车场，年收入高达数千万。而宝街村呢？我们的命运更为可悲。为了讨好中央政府，尤其是当时的中央常委周永康 [5]，杨卫泽计划在我们这些简朴的农舍上建26栋豪华别墅，送给中央委员。虽然这个计划未能成功，我们的村庄被推平改建成了套山马路式公园和更多的停车场，以疏散巨大的客流涌入。收入全部归鼋头渚公园，一分钱也没有流向被强拆的村民。
 
-我们两千多年的村落和祖先的集体资产被彻底没收。这片土地世世代代养活着我们的家庭，而村民们只得到了每平方米300多元的补偿。安置的住房不仅看起来不起眼，而且质量很低劣。安居房每层四间公寓，公用一个楼梯，堪称无锡市最差的居住条件，远不如我们曾经很好的房子，甚至有些家庭都有别墅。我们以前在整个无锡市农村的条件来说都是很富有的。自解放以来过得相当安稳，哪怕没有正式工作，村民也可以通过开小店或在5A级景区旁卖小商品维持生计。如今，我们被困在安置房里，成了无地可依、贫困潦倒的群体，近200名村民依靠无锡市的最低生活保障 勉强生存。
+我们两千多年的村落和祖先的集体资产被彻底没收。这片土地世世代代养活着我们的家庭，而村民们只得到了每平方米300多元的补偿。安置的住房不仅看起来不起眼，而且质量很低劣。安居房每层四间公寓，公用一个楼梯，堪称无锡市最差的居住条件，远不如我们曾经很好的房子，甚至有些家庭都有别墅。我们以前在整个无锡市农村的条件来说都是很富有的。自解放以来过得相当安稳，哪怕没有正式工作，村民也可以通过开小店或在5A级景区旁卖小商品维持生计。如今，我们被困在安置房里，成了无地可依、贫困潦倒的群体，近200名村民依靠无锡市的最低生活保障 [6] 勉强生存。
 
 2008年，我们三个村的总人口大约在1,700人左右。根据我们查阅的许多政府文件，根据省发展改革委员会的规定，这样的拆迁应当得到省政府的批准。然而，我们却在没有任何法律程序的情况下被逼签。面对这场不公，我们超过千人团结起来捍卫自己的权益，提起诉讼，案件一路上诉至中国最高人民法院。2016年，最高法院裁定江苏省高院应当受理我们的案件。但高院立案后并未开展审理，反而将案件转交至无锡中级法院，在那里案件被搁置，不开庭、不审理，至今未得到解决。
 
@@ -59,38 +59,30 @@ const chineseText = `
 const parsedEnglish = parseParagraphs(englishText, 'en');
 const parsedChinese = parseParagraphs(chineseText, 'ch');
 
-// Manually add footnoteId to some paragraphs for testing
-if (parsedEnglish.length > 0) {
-  parsedEnglish[0].footnoteId = "1";
-}
-if (parsedEnglish.length > 1) {
-  parsedEnglish[1].footnoteId = "2";
-}
-if (parsedEnglish.length > 2) {
-  parsedEnglish[2].footnoteId = "3";
-}
+// Temporary logging to verify the output structure:
+console.log("Parsed English paragraphs:", parsedEnglish);
+console.log("Parsed Chinese paragraphs:", parsedChinese);
 
-if (parsedChinese.length > 0) {
-  parsedChinese[0].footnoteId = "1";
-}
-if (parsedChinese.length > 1) {
-  parsedChinese[1].footnoteId = "2";
-}
-if (parsedChinese.length > 2) {
-  parsedChinese[2].footnoteId = "3";
-}
+// Optionally, add footnote IDs to a few paragraphs for testing:
+if (parsedEnglish.length > 0) parsedEnglish[0].footnoteId = "1";
+if (parsedEnglish.length > 1) parsedEnglish[1].footnoteId = "2";
+if (parsedEnglish.length > 2) parsedEnglish[2].footnoteId = "3";
+
+if (parsedChinese.length > 0) parsedChinese[0].footnoteId = "1";
+if (parsedChinese.length > 1) parsedChinese[1].footnoteId = "2";
+if (parsedChinese.length > 2) parsedChinese[2].footnoteId = "3";
 
 export const baoHailanData = {
+    id: "bao-hailan",
     name: "Bao Hailan",
     chName: '包海兰',
     address: "Yong'an Village No.45, Huazhuang Subdistrict, Binhu District, Wuxi, Jiangsu, China",
     chineseAddress: "江苏省无锡市滨湖区华庄街道永安村45号",
-    location: { lat: 32, lng: 122 },
+    location: { lat: 31.51351262055682, lng: 120.24154302775483 },
     cover:
       "https://res.cloudinary.com/pang-dev/image/upload/v1677709248/CCLT/Jianhua_Tang_garden_k2npqh.jpg",
 //    hint: "",
-    profileId: "b",
-    id: "bao-hailan",
+//    profileId: "b",
 //   sign: true,
 //    audio: [
 //      {
@@ -114,27 +106,34 @@ export const baoHailanData = {
         chCaption: "集体土地使用证，郁秀兰",
       }
     ],
-    // Instead of manually typing paragraph by paragraph:
-    // We parse the multiline strings into paragraph objects
-    description: [
-      ...parseParagraphs(englishText, 'en'),
-      ...parseParagraphs(chineseText, 'ch'),
-    ],
+  // Combine the paragraphs into one description array
+  description: [
+    ...parsedEnglish,
+    ...parsedChinese,
+  ],
     // New footnotes array with a few random footnotes for testing.
     footnotes: [
-      { id: "1", en: "The 'thirty-year unchanged' land contract policy, initiated through the 1984 'Document No. 1' (中央一号文件), represented a cornerstone of China's rural reforms. This policy guaranteed farmers' land use rights for three decades, marking a significant departure from the commune system. ", 
-                 ch: "'三十年不变'土地合同政策始于1984年的《中央一号文件》，是中国农村改革的基石。该政策保障了农民三十年的土地使用权，标志着人民公社体制的退役。" },
-      { id: "2", en: "'Qingtou' (青头), a colloquial term used to describe local thugs or enforcers often employed unofficially by authorities to intimidate residents during forced demolitions. The parenthetical translation '地痞流氓' in the Chinese text explicitly identifies them as 'local ruffians and hooligans.'", 
-                 ch: "'青头'，地方俗语，指地方当局在强制拆迁时非正式雇用的地痞流氓，用来恐吓居民。" },
-      { id: "3", en: "The highest-ranking Communist Party official at the village level, wielding significant political and administrative power in rural areas.", 
-                 ch: "村级党组织最高级别的官员，在农村地区掌握重要的政治和行政权力。" },
-      { id: "4", en: "Blank contracts (空白协议) represent a documented form of administrative coercion that violates Article 52 of China's Contract Law (合同法). Legal scholarship indicates that between 15-20% of demolition agreements in major cities involved such practices during the early 2000s. ",
-                 ch: "空白协议是一种有据可查的行政胁迫形式，违反了《中国合同法》第52条的规定。法律研究表明，在2000年代初期，中国主要城市中15-20%的拆迁案件协议涉及此类做法。"},
-      { id: "5", en: "The petition system is an administrative system in China allowing citizens to seek redress for grievances by appealing to progressively higher levels of government, culminating in appeals to Beijing. The system dates back to imperial times but continues to serve as a parallel channel to legal procedures.",
-                 ch: "信访制度是中国的一种行政体系，允许公民通过向更高层级政府申诉来寻求救济，最终可上访至北京。该制度可追溯至帝制时期，至今仍作为法律程序的平行渠道继续存在。"},
-      { id: "6", en: "A legal mechanism introduced in China in 2008 allowing citizens to request government information, similar to Freedom of Information requests in other countries.",
-                 ch: "政府信息公开制度是中国于2008年推出的法律机制，允许公民申请获取政府信息，类似于其他国家的信息自由申请制度。"},
+      { id: "1", en: "Wuxi City launched the “6699 Action” to address the environmental issues of Lake Taihu and protect its water sources. The initiative was named for its “6 emergency measures, 6 operational mechanisms, 9 water source cleanup projects, and 9 pollution control strategies”. (https://www.gov.cn/jrzg/2007-06/06/content_637873.htm)",
+                 ch: "2007年6月，无锡市确定治理太湖、保护水源的“6699行动”，包括六大应急对策、六大工作机制、九大清源工程、九大治污措施。（https://www.gov.cn/jrzg/2007-06/06/content_637873.htm）"},
+      { id: "2", en: "Yang Weize, Municipal Party Secretary of Wuxi (2004–2011) and Nanjing (2011–2015), was expelled from the Communist Party in 2015 and sentenced to 12 years in prison for accepting over ¥16 million in bribes. Yang’s downfall was part of President Xi Jinping's broader anti-corruption campaign which targeted many high-ranking officials, including Yang's political patron, Zhou Yongkang.",
+                 ch: "杨卫泽，无锡市委书记（2004-2011年）和南京市委书记（2011-2015年），因收受超过1600万元人民币贿赂，于2015年被开除党籍并被判处12年有期徒刑。杨卫泽的倒台是习近平主席大规模反腐运动的一部分，这场运动打击了许多高级官员，包括杨卫泽的政治靠山周永康。"},
+      { id: "3", en: "AAAAA is the highest rating given by China's Ministry of Culture and Tourism, awarded to the nation’s most important and best-maintained tourist attractions. As of December 2024, 359 attractions held the 5A rating. (https://baike.baidu.com/item/国家AAAAA级旅游景区/3575094)",
+                 ch: "AAAAA级景区是中国文化和旅游部评定的最高级别旅游景区称号，颁发给国内最重要和维护最好的旅游景点。截至2024年12月，全国共有359个景区持有5A级评定。（https://baike.baidu.com/item/国家AAAAA级旅游景区/3575094）"},
+      { id: "4", en: "Wuxi government website describes Turtle Head Isle Scenic Area as one of the top three places in the world to admire cherry blossoms, with over 30,000 cherry trees of more than 100 species.",
+                 ch: "无锡市政府网站将鼋头渚风景区描述为世界三大赏樱胜地之一，公园内种植了超过100个品种、共3万多株樱花树。"},
+      { id: "5", en: "Zhou Yongkang, a Wuxi-born former senior leader in the Communist Party, was one of China's most powerful figures until his downfall in 2014. Zhou was the first Politburo Standing Committee member and the highest-ranking official to be tried and convicted of corruption.",
+                 ch: "周永康，出生于无锡的前中共高层领导人，在2014年倒台之前是中国最有权势的人物之一。周永康是第一个被审判并被判定贪腐罪的中共政治局常委，也是最高级别被定罪的官员。"},
+      { id: "6", en: "As of 2023, the minimum subsistence allowance for Wuxi residents is ¥1,095 ($153) per person per month.",
+                 ch: "截至2023年，无锡市居民的最低生活保障标准为每人每月1,095元人民币（153美元）。"},
     ],
+
+    tags: [
+      { en: "Forced Demolition", ch: "强制拆迁" },
+      { en: "Illegal Detention", ch: "非法拘禁" },
+      { en: "Coercion", ch: "胁迫" },
+      { en: "Intimidation", ch: "恐吓" },
+    ],
+
     // If you want the quote:
     // quote: [
     //   { type: 'en', default: '...' },

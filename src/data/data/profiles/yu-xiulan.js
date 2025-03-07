@@ -227,6 +227,17 @@ export const yuXiulanData =
       { id: "6", en: "A legal mechanism introduced in China in 2008 allowing citizens to request government information, similar to Freedom of Information requests in other countries.",
                  ch: "政府信息公开制度是中国于2008年推出的法律机制，允许公民申请获取政府信息，类似于其他国家的信息自由申请制度。"},
     ],
+
+    tags: [
+      { en: "Forced Demolition", ch: "强制拆迁" },
+      { en: "Illegal Detention", ch: "非法拘禁" },
+      { en: "Coercion", ch: "胁迫" },
+      { en: "Intimidation", ch: "恐吓" },
+      { en: "Physical Harm", ch: "人身伤害" },
+      { en: "Forced Signing", ch: "强迫签字" },
+      { en: "Surveillance", ch: "监视" }
+    ],
+
   //  resources: [
   //    {
   //      title: "Interview with Tang Jianhua",
