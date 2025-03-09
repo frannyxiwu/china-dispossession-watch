@@ -43,11 +43,29 @@ const OrangeNode = ({ data }) => {
       textAlign: 'center',
       fontSize: '14px',
       width: 180,
-      position: 'relative'
+      position: 'relative',
+      cursor: data.link ? 'pointer' : 'default' // Change cursor when hoverable
+    }}
+      onClick={() => {
+        if (data.link) {
+          window.location.href = data.link;
+          // Or if using React Router: navigate(data.link);
+      }
     }}>
-      <Handle type="target" position={Position.Left} style={{ background: '#FD8D3C' }} />
+    {/* Target handles */}
+    <Handle id="left" type="target" position={Position.Left} style={{ background: '#FD8D3C' }} />
+      <Handle id="top" type="target" position={Position.Top} style={{ background: '#FD8D3C' }} />
+      <Handle id="right" type="target" position={Position.Right} style={{ background: '#FD8D3C' }} />
+      <Handle id="bottom" type="target" position={Position.Bottom} style={{ background: '#FD8D3C' }} />
+      
+      {/* Only render the label once */}
       {data.label}
-      <Handle type="source" position={Position.Right} style={{ background: '#FD8D3C' }} />
+      
+      {/* Source handles - note that they MUST have type="source" */}
+      <Handle id="right-source" type="source" position={Position.Right} style={{ background: '#FD8D3C' }} />
+      <Handle id="bottom-source" type="source" position={Position.Bottom} style={{ background: '#FD8D3C' }} />
+      <Handle id="top-source" type="source" position={Position.Top} style={{ background: '#FD8D3C' }} />
+      <Handle id="left-source" type="source" position={Position.Left} style={{ background: '#FD8D3C' }} />
     </div>
   );
 };
@@ -62,11 +80,27 @@ const GreenNode = ({ data }) => {
       textAlign: 'center',
       fontSize: '14px',
       width: 180,
-      position: 'relative'
-    }}>
-      <Handle type="target" position={Position.Left} style={{ background: '#74C476' }} />
+      position: 'relative',
+      cursor: data.link ? 'pointer' : 'default'
+    }}
+      onClick={() => {
+        if (data.link) window.location.href = data.link;
+      }}
+    >
+      {/* Target handles */}
+      <Handle id="left" type="target" position={Position.Left} style={{ background: '#74C476' }} />
+      <Handle id="top" type="target" position={Position.Top} style={{ background: '#74C476' }} />
+      <Handle id="right" type="target" position={Position.Right} style={{ background: '#74C476' }} />
+      <Handle id="bottom" type="target" position={Position.Bottom} style={{ background: '#74C476' }} />
+      
+      {/* Only render the label once */}
       {data.label}
-      <Handle type="source" position={Position.Right} style={{ background: '#74C476' }} />
+      
+      {/* Source handles - note that they MUST have type="source" */}
+      <Handle id="right-source" type="source" position={Position.Right} style={{ background: '#74C476' }} />
+      <Handle id="bottom-source" type="source" position={Position.Bottom} style={{ background: '#74C476' }} />
+      <Handle id="top-source" type="source" position={Position.Top} style={{ background: '#74C476' }} />
+      <Handle id="left-source" type="source" position={Position.Left} style={{ background: '#74C476' }} />
     </div>
   );
 };
@@ -79,7 +113,7 @@ const FlowChart = () => {
 
   const initialNodes = [
     // Main Process - Row 1
-    { id: 'gov', type: 'orange', position: { x: 50, y: 100 }, data: { label: 'Govt designates land for redevelopment' } },
+    { id: 'gov', type: 'orange', position: { x: 50, y: 100 }, data: { label: 'Govt designates land for redevelopment' ,link: ''} },
     { id: 'notices', type: 'orange', position: { x: 300, y: 100 }, data: { label: 'Notices sent to homeowners' } },
     
     // Row 2
@@ -112,17 +146,17 @@ const FlowChart = () => {
     { id: 'forced-demolition', type: 'orange', position: { x: 1800, y: 250 }, data: { label: 'Forced demolition' } },
     
     // Green nodes - Intimidation tactics
-    { id: 'surveillance', type: 'green', position: { x: 800, y: 350 }, data: { label: 'Surveillance' } },
-    { id: 'harassment', type: 'green', position: { x: 800, y: 400 }, data: { label: 'Harassment' } },
-    { id: 'assault', type: 'green', position: { x: 800, y: 450 }, data: { label: 'Assault' } },
-    { id: 'falsecrim', type: 'green', position: { x: 800, y: 500 }, data: { label: 'False criminalization' } },
-    { id: 'economic', type: 'green', position: { x: 800, y: 550 }, data: { label: 'Economic reprisal' } },
-    { id: 'blackmail', type: 'green', position: { x: 800, y: 600 }, data: { label: 'Blackmail' } },
-    { id: 'predatory', type: 'green', position: { x: 800, y: 650 }, data: { label: 'Predatory contracting' } },
-    { id: 'environmental', type: 'green', position: { x: 800, y: 700 }, data: { label: 'Environmental hazards' } },
-    { id: 'service', type: 'green', position: { x: 800, y: 750 }, data: { label: 'Service cutoff' } },
-    { id: 'property', type: 'green', position: { x: 800, y: 800 }, data: { label: 'Property damage' } },
-    { id: 'retaliatory', type: 'green', position: { x: 800, y: 850 }, data: { label: 'Retaliatory fines/lawsuits' } },
+    { id: 'surveillance', type: 'green', position: { x: 750, y: 350 }, data: { label: 'Surveillance' } },
+    { id: 'harassment', type: 'green', position: { x: 750, y: 400 }, data: { label: 'Harassment' } },
+    { id: 'assault', type: 'green', position: { x: 750, y: 450 }, data: { label: 'Assault' } },
+    { id: 'falsecrim', type: 'green', position: { x: 750, y: 500 }, data: { label: 'False criminalization' } },
+    { id: 'economic', type: 'green', position: { x: 750, y: 550 }, data: { label: 'Economic reprisal' } },
+    { id: 'blackmail', type: 'green', position: { x: 750, y: 600 }, data: { label: 'Blackmail' } },
+    { id: 'predatory', type: 'green', position: { x: 750, y: 650 }, data: { label: 'Predatory contracting' } },
+    { id: 'environmental', type: 'green', position: { x: 750, y: 700 }, data: { label: 'Environmental hazards' } },
+    { id: 'service', type: 'green', position: { x: 750, y: 750 }, data: { label: 'Service cutoff' } },
+    { id: 'property', type: 'green', position: { x: 750, y: 800 }, data: { label: 'Property damage' } },
+    { id: 'retaliatory', type: 'green', position: { x: 750, y: 850 }, data: { label: 'Retaliatory fines/lawsuits' } },
     
     // Green nodes - Local petitioning
     { id: 'local', type: 'green', position: { x: 1300, y: 400 }, data: { label: 'Local' } },
@@ -177,23 +211,23 @@ const FlowChart = () => {
     { id: 'e17', source: 'petitioning', target: 'pet-fail', type: 'default', animated: false, style: { stroke: '#FD8D3C', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#FD8D3C' } },
     
     // Final outcomes
-    { id: 'e18', source: 'lit-fail', target: 'forced-demolition', type: 'default', animated: false, style: { stroke: '#FD8D3C', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#FD8D3C' } },
+    { id: 'e18', source: 'lit-fail', target: 'forced-demolition', sourceHandle: 'right-source', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#FD8D3C', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#FD8D3C' } },
     { id: 'e19', source: 'lit-succeed1', target: 'home-retention', type: 'default', animated: false, style: { stroke: '#FD8D3C', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#FD8D3C' } },
     { id: 'e20', source: 'lit-succeed2', target: 'home-retention', type: 'default', animated: false, style: { stroke: '#FD8D3C', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#FD8D3C' } },
     { id: 'e21', source: 'pet-fail', target: 'forced-demolition', type: 'default', animated: false, style: { stroke: '#FD8D3C', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#FD8D3C' } },
     
     // Green connections - intimidation tactics
-    { id: 'e22', source: 'intimidation', target: 'surveillance', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e23', source: 'intimidation', target: 'harassment', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e24', source: 'intimidation', target: 'assault', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e25', source: 'intimidation', target: 'falsecrim', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e26', source: 'intimidation', target: 'economic', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e27', source: 'intimidation', target: 'blackmail', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e28', source: 'intimidation', target: 'predatory', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e29', source: 'intimidation', target: 'environmental', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e30', source: 'intimidation', target: 'service', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e31', source: 'intimidation', target: 'property', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e32', source: 'intimidation', target: 'retaliatory', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e22', source: 'intimidation', target: 'surveillance', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e23', source: 'intimidation', target: 'harassment', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e24', source: 'intimidation', target: 'assault', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e25', source: 'intimidation', target: 'falsecrim', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e26', source: 'intimidation', target: 'economic', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e27', source: 'intimidation', target: 'blackmail', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e28', source: 'intimidation', target: 'predatory', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e29', source: 'intimidation', target: 'environmental', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e30', source: 'intimidation', target: 'service', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e31', source: 'intimidation', target: 'property', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e32', source: 'intimidation', target: 'retaliatory', targetHandle: 'right', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
     
     // Green connections - petitioning local
     { id: 'e33', source: 'petitioning', target: 'local', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
@@ -212,7 +246,7 @@ const FlowChart = () => {
     
     { id: 'e43', source: 'prov-arrived', target: 'prov-received', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
     { id: 'e44', source: 'prov-intercepted', target: 'forcible-transfer', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
-    { id: 'e45', source: 'forcible-transfer', target: 'illegal-detention', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
+    { id: 'e45', source: 'forcible-transfer', target: 'illegal-detention', sourceHandle: 'bottom-source', targetHandle: 'top', type: 'default', animated: false, style: { stroke: '#74C476', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#74C476' } },
   ];
 
   return (
