@@ -29,6 +29,17 @@ const Header = () => {
                     </FlexDiv> */}
                 </NavLink>
                 <NavLink 
+                    to={'/handbook'}
+                    style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }
+                >
+                    <FlexDiv>
+                        <EngTitle>Handbook</EngTitle>
+                        <ChTitle>手册</ChTitle>
+                    </FlexDiv>
+                </NavLink>
+                <NavLink 
                     to={'/directory'}
                     style={({ isActive }) =>
                         isActive ? activeStyle : undefined
@@ -160,7 +171,7 @@ const ChTitle = styled.div`
 
 const FlexDiv = styled.div`
     display: flex;
-    width: 140px;
+    min-width: 150px;
     justify-content: center;
 `
 
