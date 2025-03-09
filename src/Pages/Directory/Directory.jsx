@@ -5,10 +5,13 @@ import Map from '../Map/Map';
 import Media from 'react-media';
 import { yuXiulanData } from '../../data/data/profiles/yu-xiulan';
 import { baoHailanData } from '../../data/data/profiles/bao-hailan';
+import { xuYulouData } from '../../data/data/profiles/xu-yulou';
+import { zhouJinhuaData } from '../../data/data/profiles/zhou-jinhua';
+import { yinBaimeiData } from '../../data/data/profiles/yin-baimei';
 
 const Directory = () => {
   // Store profiles from your imported data objects.
-  const [profiles] = useState([yuXiulanData, baoHailanData]);
+  const [profiles] = useState([yuXiulanData, baoHailanData, xuYulouData, zhouJinhuaData, yinBaimeiData]);
 
   // State for currently selected profile (from marker click)
   const [selectedProfile, setSelectedProfile] = useState(null);
