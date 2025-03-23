@@ -17,7 +17,7 @@ export function parseParagraphs(text, type) {
 
 
 
-{/*}
+/*}
   export function parseParagraphs(text, type) {
     return text
       // Split on blank lines; tweak as needed
@@ -30,4 +30,4 @@ export function parseParagraphs(text, type) {
       }));
   }
   
- {*/} 
+ {*/

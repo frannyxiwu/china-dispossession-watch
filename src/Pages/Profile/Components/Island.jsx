@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { ArrowForward, ArrowBack } from '@mui/icons-material';
 import PdfModal from './pdfModal'; // for pdf display
-
-
-import Acorn from '../../../assets/acorn.png';
 import AudioPlayer from './AudioPlayer';
 import MapViewComponent from './MapViewComponent';
 
@@ -28,18 +25,10 @@ const Island = ({ data, currentLang }) => {
    setImageId(imageId + 1);
  };
 
-
- const toggleTooltip = (ev) => {
-   ev.preventDefault();
-   setIsTooltipShowing(!isTooltipShowing);
-   clearTimeout(tooltipTimeout);
- };
-
-
- const destroyTooltip = () => {
+ const destroyTooltip = useMemo(() => () => {
    setIsTooltipShowing(false);
    clearTimeout(tooltipTimeout);
- };
+ }, [tooltipTimeout]);
 
 
  const openPdfModal = (url) => {
@@ -58,7 +47,7 @@ const Island = ({ data, currentLang }) => {
      window.removeEventListener('scroll', destroyTooltip);
      clearTimeout(tooltipTimeout);
    };
- }, []);
+ }, [destroyTooltip, tooltipTimeout]);
 
 
  useEffect(() => {

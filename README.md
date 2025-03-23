@@ -1,3 +1,10 @@
+# TODOS
+
+- Setup typescript
+- Setup eslint. 
+- Add precommit hook to enforce eslint rules
+- Fully type the codebase. Do not use `any` under *any* circumstances.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

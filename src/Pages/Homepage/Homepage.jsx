@@ -60,32 +60,6 @@ const Homepage = ({data}) => {
  
 export default Homepage
 
-const CloseButton = styled.button`
-    background-color: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    padding: 0px;
-`
-
-const InstructionHeader = styled.div`
-    height: 52px;
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    font-family: 'Quattrocento', sans-serif;
-    line-height: 20px;
-    font-family: 14px;
-    background-color: #423F67;
-    color: #FBF6E9;
-    box-sizing: border-box;
-`
-
 const Wrapper = styled.div`
     height: calc(100vh - 88px);
     background-color: #FBF6E9;

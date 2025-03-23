@@ -2,7 +2,6 @@ import './App.css';
 import {
   Routes,
   Route,
-  BrowserRouter,
   HashRouter,
 } from 'react-router-dom';
 //import Homepage from './Pages/Homepage/Homepage';
