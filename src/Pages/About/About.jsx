@@ -147,9 +147,9 @@ const About = () => {
           "https://res.cloudinary.com/dsqszwws8/image/upload/v1741228757/fxw_headshot_mzqmdo.png",
       },
       {
-        name: "Team Member 1",
+        name: "Kelly Xinyu Yan",
         role: "Role 1",
-        chName: "团队成员 1",
+        chName: "Kelly Xinyu Yan",
         chRole: "职位 1",
         photo:
           "https://res.cloudinary.com/dsqszwws8/image/upload/v1741229103/Screenshot_2025-03-05_at_9.44.37_PM_slette.png",

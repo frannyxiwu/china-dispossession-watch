@@ -37,7 +37,7 @@ const Map = ({ data = [], onMarkerClick, isHistoryTrailOpen }) => {
   });
 
   const onLoad = useCallback((mapInstance) => {
-    mapInstance.setZoom(9);
+    mapInstance.setZoom(10.5);
   }, []);
 
   return isLoaded && (
