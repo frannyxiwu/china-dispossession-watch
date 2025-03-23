@@ -6,4 +6,4 @@ import App from './App';
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
-root.render(<App name='history trail'/>)
+root.render(<App name='China Dispossession Watch'/>)
