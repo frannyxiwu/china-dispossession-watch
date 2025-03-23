@@ -28,7 +28,7 @@ jobs:
         run: npm run build
 
       - name: "Move build folder"
-        run: mkdir build/china-dispossession-watch && mv build/** build/china-dispossession-watch
+        run: mkdir __placeholder && mv build/** __placeholder && mkdir build/china-dispossession-watch && mv __placeholder/** build/china-dispossession-watch
 
       - name: "Move index and CNAME back"
         run: mv build/china-dispossession-watch/index.html build && mv build/china-dispossession-watch/CNAME build
