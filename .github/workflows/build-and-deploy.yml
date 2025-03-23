@@ -27,8 +27,11 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: "Move bulid folder"
-        run: mv build china-dispossession-watch
+      - name: "Move build folder"
+        run: mv build build/china-dispossession-watch
+
+      - name: "Move index and CNAME back"
+        run: mv build/china-dispossession-watch/index.html build && mv build/china-dispossession-watch/CNAME build
 
       # Deploy to GitHub Pages
       - name: Deploy
