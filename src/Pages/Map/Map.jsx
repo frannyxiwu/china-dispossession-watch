@@ -36,15 +36,8 @@ const Map = ({ data = [], onMarkerClick, isHistoryTrailOpen }) => {
     mapId: '312779142772ae11',
   });
 
-  const [map, setMap] = useState(null);
-
   const onLoad = useCallback((mapInstance) => {
     mapInstance.setZoom(9);
-    setMap(mapInstance);
-  }, []);
-
-  const onUnmount = useCallback(() => {
-    setMap(null);
   }, []);
 
   return isLoaded && (
@@ -53,7 +46,6 @@ const Map = ({ data = [], onMarkerClick, isHistoryTrailOpen }) => {
         mapContainerStyle={containerStyle}
         center={defaultCenter}
         onLoad={onLoad}
-        onUnmount={onUnmount}
         options={createMapOptions()}
       >
         {data.map(({ location, id }) => (
@@ -78,7 +70,7 @@ export default React.memo(Map);
 
 
 
-{/* import React from 'react'
+/* import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { useEffect, useState } from 'react';
 import MarkerComponent from './MarkerComponent';
@@ -164,4 +156,4 @@ const Wrapper = styled.div`
     }
 `
 
-export default React.memo(Map) */}
+export default React.memo(Map) */

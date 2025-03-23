@@ -108,7 +108,7 @@ const InfoMessage = styled.p`
 
 
 
-{/* import styled from 'styled-components';
+/* import styled from 'styled-components';
 import ProfileList from './Components/ProfileList';
 import HistoryTrail from './Components/HistoryTrail';
 import HistoryTrailMobile from './Components/HistoryTrailMobile';
@@ -256,4 +256,4 @@ const Wrapper = styled.div`
     display: flex;
     transition: all .12s ease-in-out;
 `
-*/}
+*/

@@ -1,6 +1,5 @@
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
-import logo from '../assets/FinalLogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
@@ -51,7 +50,7 @@ const Header = () => {
                     </FlexDiv>
                 </NavLink>
                 <a 
-                    href={''}//link for participation
+                    href={'www.google.com'}//link for participation
                 >
                     <FlexDiv>
                         <EngTitle>Contact</EngTitle>
@@ -162,10 +161,6 @@ const FlexDiv = styled.div`
     display: flex;
     width: 140px;
     justify-content: center;
-`
-
-const LogoImage = styled.img`
-    height: 96px;
 `
 
 const Wrapper = styled.div`
