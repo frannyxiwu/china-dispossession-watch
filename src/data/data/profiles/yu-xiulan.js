@@ -235,7 +235,8 @@ export const yuXiulanData =
       { en: "Intimidation", ch: "恐吓" },
       { en: "Physical Harm", ch: "人身伤害" },
       { en: "Forced Signing", ch: "强迫签字" },
-      { en: "Surveillance", ch: "监视" }
+      { en: "Surveillance", ch: "监视" },
+      { en: "Near-death Experience", ch: "濒死经历"}
     ],
 
   //  resources: [
