@@ -315,7 +315,7 @@ const MiddlePanel = styled.div`
   padding: 32px 48px;
   box-sizing: border-box;
   border-right: 1px solid rgba(66, 63, 103, 0.25);
-  border-left: 1px solid rgba(66, 63, 103, 0.25);
+  border-left: 0px solid rgba(66, 63, 103, 0.25);
   min-height: 0;
 `;
 
