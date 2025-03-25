@@ -10,10 +10,11 @@ import { zhouJinhuaData } from '../../data/data/profiles/zhou-jinhua';
 import { yinBaimeiData } from '../../data/data/profiles/yin-baimei';
 import { niCaiyingData } from '../../data/data/profiles/ni-caiying';
 import { wangMeiyuData } from '../../data/data/profiles/wang-meiyu';
+import { yuChunmeiData } from '../../data/data/profiles/yu-chunmei';
 
 const Directory = () => {
   // Store profiles from your imported data objects.
-  const [profiles] = useState([yuXiulanData, baoHailanData, xuYulouData, zhouJinhuaData, yinBaimeiData, niCaiyingData, wangMeiyuData]);
+  const [profiles] = useState([yuXiulanData, baoHailanData, xuYulouData, zhouJinhuaData, yinBaimeiData, niCaiyingData, wangMeiyuData, yuChunmeiData]);
 
   // State for currently selected profile (from marker click)
   const [selectedProfile, setSelectedProfile] = useState(null);
