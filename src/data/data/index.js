@@ -9,6 +9,6 @@ import { wangMeiyuData } from './profiles/wang-meiyu';
 import { yuChunmeiData } from './profiles/yu-chunmei';
 
 // Combine them into one array
-const data = [yuXiulanData, baoHailanData, xuYulouData, zhouJinhuaData, yinBaimeiData, niCaiyingData, wangMeiyuData,yuChunmeiData];
+const data = [yuXiulanData, baoHailanData, xuYulouData, zhouJinhuaData, yinBaimeiData, niCaiyingData, wangMeiyuData, yuChunmeiData];
 
 export default data;

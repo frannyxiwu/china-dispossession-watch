@@ -56,7 +56,7 @@ if (parsedChinese.length > 0) parsedChinese[0].footnoteId = "1";
 if (parsedChinese.length > 1) parsedChinese[1].footnoteId = "2";
 if (parsedChinese.length > 2) parsedChinese[2].footnoteId = "3";
 
-export const zhouJinhuaData = {
+export const yuChunmeiData = {
     id: "yu-chunmei",
     name: "Yu Chunmei",
     chName: '虞春梅',
