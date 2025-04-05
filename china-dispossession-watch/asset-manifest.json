@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/china-dispossession-watch/static/css/main.2ee59da6.css",
-    "main.js": "/china-dispossession-watch/static/js/main.a8dd212b.js",
+    "main.js": "/china-dispossession-watch/static/js/main.05ff6f5b.js",
     "static/media/mitPKGIDEASLogo.png": "/china-dispossession-watch/static/media/mitPKGIDEASLogo.e1eba64ef00ee3f17111.png",
     "static/media/mitCRELogo.png": "/china-dispossession-watch/static/media/mitCRELogo.a360fd09d720c063a866.png",
     "index.html": "/china-dispossession-watch/index.html",
     "main.2ee59da6.css.map": "/china-dispossession-watch/static/css/main.2ee59da6.css.map",
-    "main.a8dd212b.js.map": "/china-dispossession-watch/static/js/main.a8dd212b.js.map"
+    "main.05ff6f5b.js.map": "/china-dispossession-watch/static/js/main.05ff6f5b.js.map"
   },
   "entrypoints": [
     "static/css/main.2ee59da6.css",
-    "static/js/main.a8dd212b.js"
+    "static/js/main.05ff6f5b.js"
   ]
 }
