@@ -246,7 +246,7 @@ const TacticalManual = () => {
         sectionRefs.current[el.id] = el;
       });
     }, 500);
-  }, [currentLang]);
+  }, [currentLang, tacticalManualSections]);
 
   return (
     <Wrapper>
