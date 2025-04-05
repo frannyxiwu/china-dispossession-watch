@@ -2,13 +2,30 @@ import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { useState, useRef, useEffect } from 'react';
 
 const Header = () => {
     const [isHamburgerOpen, setHamburgerOpen] = useState(false);
+    const [isHandbookDropdownOpen, setHandbookDropdownOpen] = useState(false);
+    const handbookDropdownRef = useRef(null);
     const activeStyle = {
         fontWeight: '700'    
     };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (handbookDropdownRef.current && !handbookDropdownRef.current.contains(event.target)) {
+                setHandbookDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
     
     return (
         <Wrapper>
@@ -27,17 +44,49 @@ const Header = () => {
                         <ChTitle>主页</ChTitle>
                     </FlexDiv> */}
                 </NavLink>
-                <NavLink 
-                    to={'/handbook'}
-                    style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
-                    }
-                >
-                    <FlexDiv>
-                        <EngTitle>Handbook</EngTitle>
-                        <ChTitle>手册</ChTitle>
-                    </FlexDiv>
-                </NavLink>
+                <DropdownContainer ref={handbookDropdownRef}>
+                    <DropdownButton 
+                        onClick={() => setHandbookDropdownOpen(!isHandbookDropdownOpen)}
+                    >
+                        <FlexDiv>
+                            <EngTitle>Handbook</EngTitle>
+                            <ChTitle>手册</ChTitle>
+                            {isHandbookDropdownOpen ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
+                        </FlexDiv>
+                    </DropdownButton>
+                    {isHandbookDropdownOpen && (
+                        <SubMenu>
+                            <NavLink 
+                                to={'/handbook'}
+                                style={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }
+                                onClick={() => setHandbookDropdownOpen(false)}
+                                end
+                            >
+                                <SubMenuText>Process</SubMenuText>
+                            </NavLink>
+                            <NavLink 
+                                to={'/handbook/tactical-manual'}
+                                style={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }
+                                onClick={() => setHandbookDropdownOpen(false)}
+                            >
+                                <SubMenuText>Tactical Manual</SubMenuText>
+                            </NavLink>
+                            <NavLink 
+                                to={'/handbook/thematic-guide'}
+                                style={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }
+                                onClick={() => setHandbookDropdownOpen(false)}
+                            >
+                                <SubMenuText>Thematic Guide</SubMenuText>
+                            </NavLink>
+                        </SubMenu>
+                    )}
+                </DropdownContainer>
                 <NavLink 
                     to={'/directory'}
                     style={({ isActive }) =>
@@ -82,6 +131,33 @@ const Header = () => {
                         }
                     >
                         <EngTitle>Home</EngTitle>
+                    </NavLink>
+                    <NavLink 
+                        onClick={() => setHamburgerOpen(false)}
+                        to={'/handbook'}
+                        style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                        }
+                    >
+                        <EngTitle>Handbook - Process</EngTitle>
+                    </NavLink>
+                    <NavLink 
+                        onClick={() => setHamburgerOpen(false)}
+                        to={'/handbook/tactical-manual'}
+                        style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                        }
+                    >
+                        <EngTitle>Handbook - Tactical Manual</EngTitle>
+                    </NavLink>
+                    <NavLink 
+                        onClick={() => setHamburgerOpen(false)}
+                        to={'/handbook/thematic-guide'}
+                        style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                        }
+                    >
+                        <EngTitle>Handbook - Thematic Guide</EngTitle>
                     </NavLink>
                     <NavLink 
                         onClick={() => setHamburgerOpen(false)}
@@ -212,4 +288,54 @@ const NavigationLinkContainer = styled.div`
     @media (max-width: 800px) {
         display: none;
     }
+`
+
+const DropdownContainer = styled.div`
+    position: relative;
+    display: inline-block;
+    margin-left: 12px;
+`
+
+const DropdownButton = styled.div`
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #423F67;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+`
+
+const SubMenu = styled.div`
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 4px;
+    padding: 8px 0;
+    margin-top: 8px;
+    
+    a {
+        color: #423F67;
+        text-decoration: none;
+        display: block;
+        padding: 8px 16px;
+        margin: 0;
+        
+        &:hover {
+            background-color: #f9f9f9;
+        }
+    }
+`
+
+const SubMenuText = styled.div`
+    font-family: "Rowdies", cursive;
+    font-size: 14px;
 `
