@@ -14,6 +14,8 @@ import Profile from './Pages/Profile/Profile';
 import { RecoilRoot } from 'recoil';
 import React from 'react';
 import Process from './Pages/Handbook/Process'; 
+import TacticalManual from './Pages/Handbook/TacticalManual';
+import ThematicGuide from './Pages/Handbook/ThematicGuide';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path='/directory' element={<Directory data={data}/>}/>
           <Route path="/directory/:id" element={<Profile data={data} />} />
           <Route path='/handbook' element={<Process />} />
+          <Route path='/handbook/tactical-manual' element={<TacticalManual />} />
+          <Route path='/handbook/thematic-guide' element={<ThematicGuide />} />
         </Routes>
       </HashRouter>
     </RecoilRoot>
